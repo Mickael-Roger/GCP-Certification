@@ -1,11 +1,18 @@
  # Organization and project
  ## Hierarchy
 
-1. Organization (example.com)    -> Not available to free account
-2. Projects (example-test; example-dev; example-prod)
-3. Ressources
+1. Organization node (example.com)    -> Not available to free account
+2. Folders -> Not available to personnal account. Organize projects into groups
+3. Projects (example-test; example-dev; example-prod)
+4. Ressources
 
 Like file system, each ressource can only have one and only one project attached to and a project is attached to only one organization
+
+## Folders
+
+Group of projects that share common IAM policies
+Role granted to folders apply to ressources inside
+Managed in : IAM & Admin - Manage Ressources
 
 ## Projects
 
@@ -17,6 +24,25 @@ Identified by 3 ways :
 
 Project is really deleted 30 days after the deletion has been submitted
 
+## Quotas
+
+3 types of quotas:
+- Ressources per project
+- API rate limit per project
+- Per region
+
+Managed through support ticket or self service form (In the console -> Summit a request ticket to GCP support team)
+Can be viewed in console : IAM & Admin - Quotas
+
+## Labels
+Almost any ressources can be labeled
+Up to 64 labels per ressource
+
+A label is a key/value pair. Example : env:prod; owner:matt, tier:front; tier:middle; state:unused
+
+Different from tags that is used only for network and impact ressources operations.
+
+
 # IAM
 ## Account
 
@@ -26,7 +52,7 @@ Service account is identified with an email address : project_id@developper.gser
 ## Role and permissions
 ### Permission
 
-Is formatted by <service.ressource.verb<
+Is formatted by <service.ressource.verb>
 Exemple : compute.instances.delete
 
 ### Roles
@@ -38,12 +64,18 @@ Example : user is assigned to compute.instance admin. This role is formed by dif
 #### Primitive role
 Applied to project level : Viewer / Editor / Owner
 
-#### Predefined role
+#### Predefined role (and custom role)
 Defined at ressource level
+
+### IAM Policy
+Full list of roles granted to a member or a ressource (Organization, folders, projects, services)
 
 ### Policy hierarchy
 Order : Organization (example.com) -> Project (example-dev) -> Ressources (Compute Engine)
 Children inherit parent role /!\
+
+You can have a more permissive parent role and a more restrictive child role
+
 
 # Accessing gcloud
 3 ways :
@@ -369,3 +401,7 @@ Video analysis, detect object, content, ...
 - gcloud config set compute/zone (ZONE)
 - gcloud auth list
 - gcloud config list project
+
+- gcloud compute instances create NAME --labels contact=matt,state=inuse,env=prod
+- gcloud compute instances update NAME --update-labels contact=matt
+- gcloud compute instances update NAME --remove-labels label_name
