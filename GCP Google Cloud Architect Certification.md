@@ -405,3 +405,10 @@ Video analysis, detect object, content, ...
 - gcloud compute instances create NAME --labels contact=matt,state=inuse,env=prod
 - gcloud compute instances update NAME --update-labels contact=matt
 - gcloud compute instances update NAME --remove-labels label_name
+
+- gcloud source repos clone NAME
+
+- gcloud datastore create-indexes FILE_DESCRIPTOR.yaml
+
+- gcloud debug logpoints list
+- gcloud beta debug logpoints create FILE.py:NUM_LINE "Message log"
