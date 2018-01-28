@@ -48,6 +48,18 @@ Different from tags that is used only for network and impact ressources operatio
 
 2 types : personal account / service account
 Service account is identified with an email address : project_id@developper.gserviceaccount.com
+Service accounts are used to authenticate between services
+
+### Service account
+2 types : Google-Managed and User-Managed
+- Google-Managed : Represent different google services are like PROJECT_NUMBER@cloudservices.gservicesaccount.com and are invisible to end user
+- User-Managed : Creted by and for admins. Are like : PROJECT_NUMER-compute@developper.gserviceaccount.com or PROJECT-ID@appspot.gserviceaccount.com
+
+Service account uses a accountKey and not a password
+
+### Scope
+Combine IAM roles with service account to grant per instance permissions to other GCP ressources (declared on the compute instance creation)
+
 
 ## Role and permissions
 ### Permission
@@ -400,7 +412,7 @@ Video analysis, detect object, content, ...
 # Global commands
 - gcloud config set compute/zone (ZONE)
 - gcloud auth list
-- gcloud config list project
+- gcloud config list
 
 - gcloud compute instances create NAME --labels contact=matt,state=inuse,env=prod
 - gcloud compute instances update NAME --update-labels contact=matt
@@ -412,3 +424,7 @@ Video analysis, detect object, content, ...
 
 - gcloud debug logpoints list
 - gcloud beta debug logpoints create FILE.py:NUM_LINE "Message log"
+
+## IAM Policy management
+- gcloud projects get-iam-policy PROJECT_NAME --format json > policy.json
+- gcloud projects set-iam-policy PROJECT_NAME policy.json
