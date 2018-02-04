@@ -1,5 +1,5 @@
- # Organization and project
- ## Hierarchy
+# Organization and project
+## Hierarchy
 
 1. Organization node (example.com)    -> Not available to free account
 2. Folders -> Not available to personnal account. Organize projects into groups
@@ -87,6 +87,15 @@ Order : Organization (example.com) -> Project (example-dev) -> Ressources (Compu
 Children inherit parent role /!\
 
 You can have a more permissive parent role and a more restrictive child role
+
+# Billing
+Billing roles are defined in IAM (BillingAccountViewer, ...)
+Billing accounts are linked to projects
+Each project must be link to a Billing account and you cannot attach a new project to a billing account without thel BillingAccountUser role
+
+Alerts can be set on budget
+
+Billing can be exported into BigQuery or Cloud Storage (using CSV or JSON format)
 
 
 # Accessing gcloud
@@ -349,6 +358,78 @@ Not part of GKE, but a separate service for private storage of our own Docker im
         app: APP_NAME
         tier: frontend
 ```
+
+
+# Stackdriver
+Is a separate project and can monitor AWS and GCP
+You can use it with or without agent
+
+## Best practices
+- Create a single project for stackdriver monitoring
+- Determine monitoring needs in advance
+- Separate stackdriver service accounts for data and control isolation
+
+## Monitoring
+Monitor metrics, health checks, dashboards and alerts
+A group of ressources can be created. This group can be filtered by a tag, a security group, a name, a project, ...
+
+### Uptime check
+Check HTTP, HTTPS or TCP and wait for a response code
+
+### Alerting
+Based on 4 elements
+- Conditions : Uptime check, ...
+- Notification : Email, SMS, slack, webhook, ...
+- Documentation : Attach a doc to the alert message
+- Name : Name of the alert policy
+
+## Logging
+Audit of the activity. It's a repository for log data and events
+
+Collect plateform, system and application logs (with agent)
+
+Real time and batch monitoring
+Exports logs to other sources for long term storage using "sink" (to big query or GCS or pub/sub)
+
+Activate logging for all services (bucket access, ...) : Add this entries at the beginning of the policy.yaml IAM
+```YAML
+auditConfigs:
+- auditLogConfigs:
+  - logType: ADMIN_READ
+  - logType: DATA_WRITE
+  - logType: DATA_READ
+  service: allServices
+```
+
+## Error reporting
+Identify and understand applications errors
+
+Automatically build into App Engine
+In beta for GAE flexible, GCE, GKE and cloud function
+
+CGE and GKE require a stackdriver logging agent
+
+Work with : Java, Python, JavaScript, Ruby, C#, PHP and Go
+
+## Trace
+Find bottleneck on App Engine
+
+Automatically build into App Engine
+Available on GCE, GKE and GAE flexible with stackdriver trace API or SDK
+
+## Debugger
+Find/Fix code errors in production
+
+Inspect application state without stopping or slowing app
+
+Automatically build into App Engine
+Available on GCE, GKE and GAE flexible with additional configuration
+
+## Retention
+
+Admin activity logs - 400 days
+Data access log, Non-audit logs - 7 days (30 days with premium)
+
 
 # Big Data services
 
