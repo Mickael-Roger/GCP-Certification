@@ -257,7 +257,7 @@ Organisation
 Bucket : A basic container (Buckets cannot be nested)
 For performance, it's better to have fewer buckets and more objects in each bucket
 Bucket name must be unique in all GCP Platform
-Objects : Can be up to 5TB. Stored in a bucket
+Objects : Can be up to 5TB. Stored in a bucket (Folders are also considered objects)
 
 A bucket can have one of theses storage class :
 - Multi regional : Geo-redundant (inside a continent - Europe, Asia or US)
@@ -266,9 +266,58 @@ A bucket can have one of theses storage class :
 - Coldline : Used to store very rarely accessed document (less than a year)
 Each storage class has the same throughput, latency and durability. Differences are from the availability (From 99% to 99.95%) and pricing for storage and access
 
-Use gsutil command line
-- Create : gsutil mb  gs://BUCKET_NAME
-- Change rights : gsutil defacl ch -u AllUsers:R gs://BUCKET_NAME
+Cannot change from multi-regional to regional (and vice versa)
+Changing class only affect new objects (old objects class can be changed with gsutil)
+
+No retrieval cost when the bucket and the user are in the same region (No Wan access). For instance : GCE in us-east1 and GCS Bucket multi-regioanl in us
+
+### Security concept
+#### Access management principles
+Two methods : IAM and ACL
+
+##### IAM
+Granted to an individual bucket (but not objects)
+Possible to gran access to manage bucket but not view/read objects inside
+
+Standard Storage roles work independently from ACL
+Legacy roles work with ACL (When a legacy role right is removed, ACL reflects the change)
+
+Standard storage roles (work independently from ACLs) : Storage Admin / Storage Object Admin / Storage Object Viewer / Storage Object Creator
+Legacy storage roles (work with ACLs) : Storage Legacy Bucket Owner / Storage Legacy Bucket Reader / Storage Legacy Bucket Writer / Storage Legacy Object Owner / Storage Legacy Object Reader
+
+##### ACL
+/!\ Bucket ACL cannot be set through webconsole
+Can be applied to bucket or individual objects
+Objects inherit ACL from default bucket ACL
+
+Best practice : Use IAM over ACL whenever possible / Use ACL to grant access to an object without granting access to bucket / Use group over individual IAM users
+
+Signed URLs : Times access to object Data
+Useful to give a temporarly access to a ressource.
+No need for a google account
+
+### Signed URL for temporary access
+- Create a service account key in the API menu
+- Set permission for 10 minutes : gsutil signurl -d 10m file_key.json gs://BUCKET_NAME/FILE
+- Use the returned URL
+
+### Object versioning
+Disable by default
+When enabled, deleted and overwritten objects are archived
+Object keeps the same name but paired with unique identifier number
+If versioning disabled, existing versions remain but new ones not created
+
+Archived versions retain own ACL
+
+
+### Lifecycle management
+Applied to bucket level and can only be set through the CLI
+Implemented with combination of rules, conditions and actions
+
+If there are multiple conditions in one rule, all conditions must be met before action taken
+
+Conditions can be : Age, CreatedBefore, IsLive, MatchesStorageClass, NumberOfNewerVersions
+Actions : Delete, SetStorageClass
 
 # GKE : Google Container Engine
 It's a fully managed environment for containerized application deployment
@@ -509,3 +558,21 @@ Video analysis, detect object, content, ...
 ## IAM Policy management
 - gcloud projects get-iam-policy PROJECT_NAME --format json > policy.json
 - gcloud projects set-iam-policy PROJECT_NAME policy.json
+
+## gsutil commands
+- Create bucket : gsutil mb  gs://BUCKET_NAME
+- Change rights : gsutil defacl ch -u AllUsers:R gs://BUCKET_NAME
+- gsutil ls -l gs://BUCKET_NAME
+- Web access to bucket : https://storage.cloud.google.com/BUCKET_NAME
+
+- gsutil iam ch user:user@gmail.com:objectCreator,objectViewer gs://BUCKET_NAME/
+- gsutil iam ch -d user:user@gmail.com:objectCreator,objectViewer gs://BUCKET_NAME/  // Remove specific role
+- gsutil iam ch user:user@gmail.com gs://BUCKET_NAME/   // Remove all roles
+
+- gsutil acl ch -u user@gmail.com:[O|R|W] gs://BUCKET_NAME/[FILE|\*.png]
+- gsutil acl ch -d user@gmail.com gs://BUCKET_NAME/[FILE]       // Remove ACL rights
+
+- gsutil versioning get gs://BUCKET_NAME/
+- gsutil versioning set on gs://BUCKET_NAME/
+- gsutil ls -a gs://BUCKET_NAME     // Liste files with version ID (include versioned removed files)
+- gsutil rm gs://BUCKET_NAME/file#version_id     // Remove permanently a file even if versioned
