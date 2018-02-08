@@ -319,6 +319,8 @@ If there are multiple conditions in one rule, all conditions must be met before 
 Conditions can be : Age, CreatedBefore, IsLive, MatchesStorageClass, NumberOfNewerVersions
 Actions : Delete, SetStorageClass
 
+Can be configured through console or CLI
+
 # GKE : Google Container Engine
 It's a fully managed environment for containerized application deployment
 It uses compute engine ressources with kubernetes and a special customized OS (Container-Optimized OS)
@@ -569,10 +571,18 @@ Video analysis, detect object, content, ...
 - gsutil iam ch -d user:user@gmail.com:objectCreator,objectViewer gs://BUCKET_NAME/  // Remove specific role
 - gsutil iam ch user:user@gmail.com gs://BUCKET_NAME/   // Remove all roles
 
-- gsutil acl ch -u user@gmail.com:[O|R|W] gs://BUCKET_NAME/[FILE|\*.png]
+- gsutil acl ch -u user@gmail.com:[O|R|W] gs://BUCKET_NAME/[FILE|\*.png] (AllUsers can be used to set a public link)
 - gsutil acl ch -d user@gmail.com gs://BUCKET_NAME/[FILE]       // Remove ACL rights
 
 - gsutil versioning get gs://BUCKET_NAME/
 - gsutil versioning set on gs://BUCKET_NAME/
 - gsutil ls -a gs://BUCKET_NAME     // Liste files with version ID (include versioned removed files)
 - gsutil rm gs://BUCKET_NAME/file#version_id     // Remove permanently a file even if versioned
+
+- gsutil lifecycle get gs://BUCKET_NAME > policy.json
+- gsutil lifecycle set policy.json gs://BUCKET_NAME
+
+- gsutil rm -r gs://BUCKET_NAME     // Delete bucket and content
+
+- gsutil rewrite -r -s NEARLINE gs://BUCKET_NAME/*     // Rewrite file into nearline storage class (-r for recursive)
+- gsutil -m ...     // Multiple thread for speed improvement
