@@ -112,9 +112,25 @@ Billing can be exported into BigQuery or Cloud Storage (using CSV or JSON format
  - App Engine : PaaS
  - Cloud Functions : (Beta)
 
-## gcloud sample
-gcloud compute instances create --project "gcp-linuxacademy" "instance-2" --zone "us-east1-b" --machine-type "n1-standard-1" --subnet "default" --no-scopes --tags "http-server" --image "centos-7-v20171213" --image-project "centos-cloud" --boot-disk-size "10"
+## Disks
+### Persistent disk
+- Distributed on several disks
+- Not physically attached
+- Performance scale with size
+- SSD option available
+- Encrypted (key provide by google or by me)
+- Max size per instance : 64 TB
+- Scope of access : Zone
 
+### Local SSD
+- Directly attached. Cannot be a boot disk
+- Cannot be a boot device
+- Must create on instance creation
+- Encrypted only by a key provide by google
+- Not automatically replicated
+- 375 GB size (up to 8 per instance)
+- Deleted when instance is deleted
+- Can be SCSI or NVMe
 
 ## Snapshots
 Not shareable between projects
@@ -142,6 +158,8 @@ Auto scaling can be based on : CPU usage, HTTP LB usage, Stackdriver metrics or 
 ## SSH key management
 Global SSH key management is in the Compute/Meta Data menu for console or through gcloud cli
 
+
+
 # Network
 ## VPC
 A VPC can exist in many regions
@@ -150,19 +168,44 @@ Each VPC has its own managed firewall
 It's possible to manage network routes
 Each VPC contain one or many subnet. Can be configured automatic or custom. Only automatic (Automatic allocated subnet) can be convert to custom.
 
+A VPC can contains up to 7000 instances (can't be increased)
+Support only IPv4 unicast traffic (No broadcast or multicast) except for traditional AppEngine and global LB
+
+### Shared VPC
+Tie multiple projects into a single VPC within an organization
+Host project : Project hosting the shared VPC
+
 ## Subnet
 One subnet can only exist in one region (but in all zones of this region)
 
 ## External IP adresses
 Can be ephemeral (Change every time the instance is restarted) or static (Reserved and attached to an instance)
 
-## VPN and routers
-VPN IPSec point to point are supported
-Routers can be implemented
-
 ## Firewall
-By default everything is blocked. Think to add firewall rules to new VPC or everything gonna be blocked!
+By default all ingress traffic is blocked and all egress traffic is allowed.
 Firewall act like Security Groups and Firewall
+
+Single firewall for the entire VPC
+
+/!\ Second source filter is an OR with the first source filter
+
+## Interconnection with private Datacenter
+### Cloud Interconnect
+Give a discount on egress traffic charges
+Provide a low latency connection
+
+### Direct Peering
+It's a direct peering with the google network and not just a VPC Router or GCP
+Exchange BGP routes
+
+### VPN
+Site to site connection over IPSec
+Up to 1.5 Gps per tunnel
+Connect on-premise to GCP or two differents VPCs on GCP
+Generally used with Cloud Router to announce to avoid static routing by using BGP
+
+Multiple tunnels can be used for redundancy an rerouting traffic
+
 
 # App Engine
 Is the PAAS solution of GCP
@@ -560,6 +603,15 @@ Video analysis, detect object, content, ...
 ## IAM Policy management
 - gcloud projects get-iam-policy PROJECT_NAME --format json > policy.json
 - gcloud projects set-iam-policy PROJECT_NAME policy.json
+
+## Network
+- gcloud compute firewall-rules create NAME --allow=tcp:port --network=NETWORK --direction=INGRESS --source-range=0.0.0.0/0 --target-tags=TAG_NAME --priority=1000
+- gcloud compute firewall-rules list
+
+# Compute
+- gcloud compute instances add-tags VM_NAME --tags TAG_NAME
+- gcloud compute instances create --project PROJECT VM_NAME --zone "us-east1-b" --machine-type "n1-standard-1" --subnet "default" --no-scopes --tags TAG --image "centos-7-v20171213" --image-project "centos-cloud" --boot-disk-size "10"
+
 
 ## gsutil commands
 - Create bucket : gsutil mb  gs://BUCKET_NAME
