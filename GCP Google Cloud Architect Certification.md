@@ -120,7 +120,8 @@ Billing can be exported into BigQuery or Cloud Storage (using CSV or JSON format
 - SSD option available
 - Encrypted (key provide by google or by me)
 - Max size per instance : 64 TB
-- Scope of access : Zone
+- Scope of access : Zone (Same zone that the instance)
+- Can be attached to multiple instances if read only
 
 ### Local SSD
 - Directly attached. Cannot be a boot disk
@@ -132,6 +133,14 @@ Billing can be exported into BigQuery or Cloud Storage (using CSV or JSON format
 - Deleted when instance is deleted
 - Can be SCSI or NVMe
 
+## Images
+Can be created from a persistent disk or another image
+Image families : Simplifies versioning and group related images together
+Can be shared across projects -> Need rights that can be set to all images and not only one
+Image can be shared on Cloud Storage as an .tar.gz image
+
+Image state : Active, deprecated, obsolete, deleted
+
 ## Snapshots
 Not shareable between projects
 Snapshots work as differential backup.
@@ -142,23 +151,91 @@ Snapshots work as differential backup.
 
 If a snapshot is destroyed, link is not broken, the next snapshot is modified to included data differences between the previous one
 
+Can be used on another region or zone
+Can be used to recreate à disk
+
+## Startup Scripts
+Can be set directly or point to a file in cloud storage
+Shutdown scripts are on a best effort. The vm can shutdown before the end of the script
+
+To use a startup script through cloud storage, set url in metadata using key : startup-script-url
+
 ## Preemptible VM
 Max life of 24h
 
-## Instances group
+## Load Balancer and Instance groups
 Group of instances. Can be managed or unmanaged
 Managed groups
  - Auto scaling
  - Work with LB
  - If an instance crashes, it is auto recreated
 
+### Load Balancer
+Can be global or regional scope
+3 types :
+- Global external : HTTP(s) or TCP
+- Regional external : TCP or UDP
+- Regional internal : For internal load balancing
+
+#### HTTP(s) load balancer
+Global scope and distribute traffic to closest region
+Distribute traffic by location or content request
+Paired with instance group
+Native support for websocket protocol
+External only
+
+#### Network external load balancer
+Balance request by IP address, port or protocole
+
+#### Network internal load balancer
+Regional internal
+Affects cloud router dynamic routing
+
+### Instance groups and auto scaling
 Can be mono or multi zones (but not multi regions)
 Auto scaling can be based on : CPU usage, HTTP LB usage, Stackdriver metrics or multi criteria
+
+Load Balancer contains one backend service
+Backend service links to one or more backends
+Backend links to one instance group
+
+#### Health checks
+Auto-healing : If an instance or service fails - delete and recreate identical instance
+
+#### Managed instance group updater
+Update entire group
+Deploy new version of software
+Control pace of update rollout
+
+#### Auto scaling
+Set by auto sclaing policy
+Based on : CPU / HTTP request / Pub/Sub queue / Stackdriver metrics
+Set a maximum and minimum instance number
+
+#### Instance group update
+- Create a new template
+- Edit the instance group and choose rolling update
+- Choose the canary update : All instance or a certain percentage
+- Choose the update mode : proactive (run update now) or opportunistic (run update when isntances are created)
+
 
 ## SSH key management
 Global SSH key management is in the Compute/Meta Data menu for console or through gcloud cli
 
+## Cloud deployment manager
+Use YAML format
+Can use template (jinga2 or python)
 
+```YAML
+ressources:
+- type: compute.v1.instance
+  name: my-vm
+  properties:
+      zone: us-central1-f
+      ...
+```
+
+Can use "REST API" information when creating a VM through web interface to have informations to help to complete the YAML file
 
 # Network
 ## VPC
@@ -608,10 +685,22 @@ Video analysis, detect object, content, ...
 - gcloud compute firewall-rules create NAME --allow=tcp:port --network=NETWORK --direction=INGRESS --source-range=0.0.0.0/0 --target-tags=TAG_NAME --priority=1000
 - gcloud compute firewall-rules list
 
-# Compute
+## Compute
 - gcloud compute instances add-tags VM_NAME --tags TAG_NAME
 - gcloud compute instances create --project PROJECT VM_NAME --zone "us-east1-b" --machine-type "n1-standard-1" --subnet "default" --no-scopes --tags TAG --image "centos-7-v20171213" --image-project "centos-cloud" --boot-disk-size "10"
 
+## Disks
+- gcloud compute disks move DISK_NAME --zone=ZONE_SRC --destination-zone=ZONE_DEST
+- gcloud compute disks create NAME --zone=us-east1-b --type=pd-ssd --size=20GB
+- gcloud compute disks delete NAME --zone=us-east1-b
+- gcloud compute instances attach-disk SRV_NAME --disk DISK_NAME
+- gcloud compute disks resize DISK_NAME --zone=ZONE --size 100
+
+## Images
+- gcloud images create NAME --family=FAM_NAME --source-disk=DSK --source-disk-zone=us-east1-b
+
+## Deployment manager
+- gcloud deployment-manager deployments create DEPLOYMENT_NAME --config deploy.yml
 
 ## gsutil commands
 - Create bucket : gsutil mb  gs://BUCKET_NAME
