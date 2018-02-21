@@ -702,6 +702,11 @@ Video analysis, detect object, content, ...
 ## Deployment manager
 - gcloud deployment-manager deployments create DEPLOYMENT_NAME --config deploy.yml
 
+## Container
+- gcloud container builds submit --tag gcr.io/gcp-linuxacademy/nginx-mick .    // With the Dockerfile in the directory
+- gcloud container images list
+- gcloud container clusters resize CLUSTER_NAME --zone=us-central1-a --size=5
+
 ## gsutil commands
 - Create bucket : gsutil mb  gs://BUCKET_NAME
 - Change rights : gsutil defacl ch -u AllUsers:R gs://BUCKET_NAME
