@@ -303,7 +303,7 @@ Auto scale up and down
 Native for Java, Python, NodeJs, Ruby, .Net, ... or provide our own runtime
 Charged by CPU, memory and disk usage
 
-### App deployment
+## App deployment
 Need 3 files :
 - app.yml contains deployment configuration and is used by gcloud app deploy
 - config.py contains the application configuration (Storage, Database, ...)
@@ -320,6 +320,15 @@ To list all app deployed : gcloud app instances list
 
 ### Mutliple versions
 Traffic can be split through multiple versions of the same app. It is configured through the version menu (split traffic) and can be based on IP addresses, cookie or random
+
+## App Engine tools
+- Cloud Shell local environnement : Used to test app in local
+- Versions + Split traffic
+- Firewall rules :
+ - Default : Allow all
+ - Control access only by IP range
+ - Block malicious IP / DDOS
+
 
 # Google Cloud Endpoints
 Create, deploy, monitor, protect, analyze and serve our API
