@@ -42,6 +42,30 @@ A label is a key/value pair. Example : env:prod; owner:matt, tier:front; tier:mi
 
 Different from tags that is used only for network and impact ressources operations.
 
+# Planning a successful migration
+5 steps :
+- Assess : Define category (easy to move, hard to move, can't move)
+- Pilot : Proof of concept, non critical and easily move, what process and roles to change, ...
+- Move data
+- Move applications
+- Cloudify and optimize
+
+## Architecting Cloud applications
+- High availability : Can users access the application with minimal latency
+- Scalability :
+  - GCE : Managed instance group
+  - GKE : Cluster with autoscaling
+  - GAE : Autoscaler built-in
+- Security
+- Disaster recovery
+  - GCE snapshot
+  - Backup data to cloud storage
+
+## Storage transfer service
+Import online data into GCS : From AWS S3, HTTP location or another cloud storage bucket
+For from on premise transfer, use gsutil
+
+For very lagre transfer : Use mail-in with google transfer appliance
 
 # IAM
 ## Account
@@ -97,6 +121,7 @@ Alerts can be set on budget
 
 Billing can be exported into BigQuery or Cloud Storage (using CSV or JSON format)
 
+Discount up to 57% for committed (for 1 to 3 years) : Engaged for a set amount of CPU and RAM (paid even if not used)
 
 # Accessing gcloud
 3 ways :
