@@ -82,7 +82,7 @@ Service accounts are used to authenticate between services
 Service account uses a accountKey and not a password
 
 ### Scope
-Combine IAM roles with service account to grant per instance permissions to other GCP ressources (declared on the compute instance creation)
+Combine IAM roles with service account to grant per instance permissions to other GCP ressources (declared on the compute instance creation). IAM right is given for a complete VPC.
 
 
 ## Role and permissions
@@ -290,6 +290,7 @@ Firewall act like Security Groups and Firewall
 Single firewall for the entire VPC
 
 /!\ Second source filter is an OR with the first source filter
+/!\ For load balanced applications, firewall rules for GCP LB must be set to the VPC Network (a list of few publics IPs classes)
 
 ## Interconnection with private Datacenter
 ### Cloud Interconnect
