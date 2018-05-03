@@ -9,6 +9,7 @@
  - BigQuery
  - GCS
  - Datastore
+ - BigTable
  - Pub/Sub
  - Dataflow
  - Machine Learning
