@@ -11,6 +11,10 @@
  - Datastore
  - Pub/Sub
  - Dataflow
+ - Machine Learning
+  - Tensor Flow
+  - ML Engine
+  - API : Vision, Speech, Jobs, Translation and Natural Language
  
 
 # Datalab
