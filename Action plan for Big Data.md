@@ -2,19 +2,19 @@
  - Datalab
  - Dataproc
    - Hadoop
-  - hdfs
-  - Hive
-  - Pig
-  - Spark
+   - hdfs
+   - Hive
+   - Pig
+   - Spark
  - BigQuery
  - GCS
  - Datastore
  - Pub/Sub
  - Dataflow
  - Machine Learning
-  - Tensor Flow
-  - ML Engine
-  - API : Vision, Speech, Jobs, Translation and Natural Language
+   - Tensor Flow
+   - ML Engine
+   - API : Vision, Speech, Jobs, Translation and Natural Language
  
 
 # Datalab
