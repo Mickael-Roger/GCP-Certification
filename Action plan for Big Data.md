@@ -75,10 +75,46 @@ Docker image
 
 # Machine Learning : API
 ## Description
-
+Pre trained model accessed by a REST API. 
+- Vision : Analyze pictures. Multiple features (text_detection, landmark_detection, web_detection, ...)
+- Text to speech
+- Speech : Analyze audio (gRPC used for streaming)
+- Translation : Translate text (Translate or detect)
+- Natural Language : Analyze text
 
 
 # Notes
+API access for each componennt has to be activated. Use JSON for response
 
+Accessible through gcloud : ex : gcloud ml vision detect-text gs://img.jpg
+
+Or REST API : curl -v -s -H "Content-Type: application/json" https://vision.googleapis.com/v1/images:annotate?key=API_KEY --data-binary @req.json
+
+```json
+{
+  "requests": [
+    {
+      "image": {
+        "source": {
+          "gcsImageUri": "gs://cpb100-201619/tmp/speech.jpg"
+        }
+      },
+      "features": [
+        {
+          "type": "TEXT_DETECTION"
+        }
+      ]
+    }
+  ]
+}
+```
 
 ## Scenario
+- Authorize access to API
+- Analyze a picture
+- Translate a text
+- Translate an audio
+- Translate an audio stream
+- Analyze a text
+
+
