@@ -6,21 +6,22 @@
    - Hive
    - Pig
    - Spark
- - BigQuery
+ - BigQuery*
  - GCS
  - Datastore
- - BigTable
- - Pub/Sub
- - Dataflow
- - Machine Learning
-   - Tensor Flow
-   - ML Engine
-   - API : Vision, Speech, Jobs, Translation and Natural Language
+ - BigTable*
+ - Pub/Sub*
+ - Dataflow*
+ - Machine Learning*
+   - Tensor Flow*
+   - ML Engine*
+ - Machine learning API : Vision, Speech, Jobs, Translation and Natural Language
  
 
 # Datalab
 ## Description
 Based on Jupyter
+
 Docker image
 
 ## Notes
@@ -33,5 +34,51 @@ Docker image
 - Analyse connexions between Datalab and Master and Worke node in Dataproc (Using python, java, ...)
 
 
+# Dataproc
+## Components
+### Hadoop
+### HDFS
+#### Hive
+#### Pig
+#### Spark
+
+## Notes
 
 
+## Scenario
+
+
+
+
+# GCS
+## Description
+
+
+## Notes
+
+
+## Scenario
+
+
+
+# Datastore
+## Description
+
+
+
+## Notes
+
+
+## Scenario
+
+
+
+# Machine Learning : API
+## Description
+
+
+
+# Notes
+
+
+## Scenario
