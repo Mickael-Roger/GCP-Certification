@@ -63,7 +63,20 @@ Docker image
 
 # Datastore
 ## Description
+NoSQL managed service build upon Bigtablee and Megastore
 
+- Support SQL like queries
+- RESTFul API
+- Transaction and Indexes
+- Strong consistency
+
+Structure
+| Concept 	                     | Cloud Datastore | Relational database |
+| ----------------------------- | --------------- | ------------------- |
+| Category of object 	          | Kind 	          | Table               |
+| One object 	                  | Entity 	        | Row                 |
+| Individual data for an object |	Property 	      | Field               |
+| Unique ID for an object 	     | Key 	Primary    | key                 |
 
 
 ## Notes
