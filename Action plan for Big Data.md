@@ -83,7 +83,7 @@ Pre trained model accessed by a REST API.
 - Natural Language : Analyze text
 
 
-# Notes
+## Notes
 API access for each componennt has to be activated. Use JSON for response
 
 Accessible through gcloud : ex : gcloud ml vision detect-text gs://img.jpg
