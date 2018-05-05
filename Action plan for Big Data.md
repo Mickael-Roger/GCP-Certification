@@ -30,8 +30,7 @@ Docker image
 ## Scenario
 - Deploy Datalab on cloud shell
 - Deploy Datalab on Dataproc Master node
-- Connect Datalab to use a GCS repository
-- Analyse connexions between Datalab and Master and Worke node in Dataproc (Using python, java, ...)
+- Analyze connexions between Datalab and Master and Worke node in Dataproc (Using python, java, ...)
 
 
 # Dataproc
@@ -77,6 +76,10 @@ Structure
 | One object 	                  | Entity 	        | Row                 |
 | Individual data for an object |	Property 	      | Field               |
 | Unique ID for an object 	     | Key 	Primary    | key                 |
+
+
+NAMESPACE ???
+PARENT ENTITY ???
 
 
 ## Notes
