@@ -91,12 +91,14 @@ Create an entity (For example a company). Declare the entity reference as the pa
 
 
 ## Scenario
+- Create 4 entity group (For 4 differents companies) in a company kind
+- Create tens of users in each entity group
+- Create thousands of users linked to no entity group
 
 
 
 # Machine Learning : API
 ## Description
-Pre trained model accessed by a REST API. 
 - Vision : Analyze pictures. Multiple features (text_detection, landmark_detection, web_detection, ...)
 - Text to speech
 - Speech : Analyze audio (gRPC used for streaming)
