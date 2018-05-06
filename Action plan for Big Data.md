@@ -67,7 +67,7 @@ NoSQL managed service build upon Bigtablee and Megastore
 - Support SQL like queries
 - RESTFul API
 - Transaction and Indexes
-- Strong consistency
+- Strong consistency and eventual consistency
 
 Structure
 | Concept 	                     | Cloud Datastore | Relational database |
@@ -77,12 +77,17 @@ Structure
 | Individual data for an object |	Property 	      | Field               |
 | Unique ID for an object 	     | Key 	Primary    | key                 |
 
+### Consistency
+- Global queries : Eventual consistent
+- Key queries : Strong consistent
+- Ancestor queries : Strong consistent
 
-NAMESPACE ???
-PARENT ENTITY ???
+Only one write per second is recommanded inside each entity group. By default each entity belongs to its own entity group
 
 
 ## Notes
+### Entity group creation
+Create an entity (For example a company). Declare the entity reference as the parent of all entities you want to group inside this entity group.
 
 
 ## Scenario
