@@ -44,13 +44,12 @@ Docker image
 ### Spark
 
 ## Notes
-
+Preemptibles VM only function as processing nodes and do not store data for the HDFS cluster
 
 ## Scenario
 - Create an hadoop cluster
 - Put a datafile in hdfs
-- Parse it without preemptible VMs
-- Parse it with preemptible VMs
+- Parse it
 - Analyze it with Hive
 - Analyze it with Pig
 - Analyze it with spark, pyspark and sparksql
