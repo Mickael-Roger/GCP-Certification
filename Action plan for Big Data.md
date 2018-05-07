@@ -35,29 +35,51 @@ Docker image
 
 # Dataproc
 ## Components
+![Hadoop_ecosystem](https://www.safaribooksonline.com/library/view/hadoop-essentials/9781784396688/graphics/3765_02_06.jpg)
+
 ### Hadoop
 ### HDFS
-#### Hive
-#### Pig
-#### Spark
+### Hive
+### Pig
+### Spark
 
 ## Notes
 
 
 ## Scenario
+- Create an hadoop cluster
+- Put a datafile in hdfs
+- Parse it without preemptible VMs
+- Parse it with preemptible VMs
+- Analyze it with Hive
+- Analyze it with Pig
+- Analyze it with spark, pyspark and sparksql
+- Split and store a file in GCS
+- Process it in parralel
 
 
 
 
 # GCS
 ## Description
+Object storage :
+- Multi regional
+- Regional
+- Nearline
+- Coldline
 
 
 ## Notes
-
+Manage ACL rights: 
+```console
+gsutil acl ch -u AllUsers:R gs://my-awesome-bucket/kitten.png   # Grant read access to AllUsers
+gsutil acl ch -d AllUsers gs://my-awesome-bucket/kitten.png     # Remove theses accesses
+```
 
 ## Scenario
-
+- Create a bucket
+- Put file in the bucket
+- Manage acl of a file
 
 
 # Datastore
