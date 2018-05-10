@@ -3,6 +3,7 @@
  - Dataproc
    - Hadoop
    - hdfs
+   - Yarn
    - Hive
    - Pig
    - Spark
@@ -42,6 +43,39 @@ Docker image
 ### Hive
 ### Pig
 ### Spark
+#### Architecture
+Spark stack 
+![Spark_stack](http://www.mickael-roger.com/tmp/sparkarchitecture.png)
+
+Use a master (driver) / slave (worker) architecture
+
+##### Spark Core
+- Distributes workload
+- Monitor applications accross the cluster
+- Schedule tasks
+- Memory management
+- Fault recovery
+- Interact with storage system
+- Houses API that defines RDD
+
+Spark cluster manager supports Standalone, Mesos or Yarn.
+
+Use in-memory storage for RDD as well as disk storage
+
+##### Spark API librairies
+- Spark SQL : Structured data processing
+- Spark streaming : Process livre stream of data
+- Spark MLlib : Common Machine Learning functionality
+- GraphX : Manipulates and performs graphs
+- SparkR : Ligthweight frontend for use spark from R
+
+#### Flow of execution
+- User submit an application
+- Driver program contacts cluster manager to ask for ressources
+- Cluster manager launch executors
+- Driver program divides the progam into tasks and send them to executors
+- Executors run the tasks and return the results to the driver
+- At the end of the application, executors are terminated and cluster manager release the ressources
 
 ## Notes
 Preemptibles VM only function as processing nodes and do not store data for the HDFS cluster
