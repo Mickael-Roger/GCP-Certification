@@ -77,6 +77,28 @@ SparkContext :
 - GraphX : Manipulates and performs graphs
 - SparkR : Ligthweight frontend for use spark from R
 
+##### Resilient Distributed Datasets
+- RDD is the core data API. 
+- DataFrame API : Introduced since Spark 1.3 is more suitable for querying building because it uses a schema to describe data.
+- Dataset API : Released with Spark 2.0, it combines the best of both RDD and DataFrame API
+
+RDD is the core concept in Spark. It can be simply described as ditributed collection of read-only elements
+
+RDDs can be created by :
+- Distributiong an existing collection.
+```python
+lines = sc.parallelize(["Word1", "Word2", "Word3"])
+```
+- Loading an external dataset 
+```python
+lines = sc.testFile("MY FILE")
+```
+- Opeations on existing RDD
+```python
+newLines = lines.transform(...)
+```
+
+
 #### Flow of execution
 - User submit an application
 - Driver program contacts cluster manager to ask for ressources
@@ -84,6 +106,8 @@ SparkContext :
 - Driver program divides the progam into tasks and send them to executors
 - Executors run the tasks and return the results to the driver
 - At the end of the application, executors are terminated and cluster manager release the ressources
+
+
 
 ## Notes
 Preemptibles VM only function as processing nodes and do not store data for the HDFS cluster
