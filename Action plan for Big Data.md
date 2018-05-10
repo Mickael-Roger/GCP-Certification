@@ -78,13 +78,16 @@ SparkContext :
 - SparkR : Ligthweight frontend for use spark from R
 
 ##### Resilient Distributed Datasets
+###### RDD definitions
 - RDD is the core data API. 
 - DataFrame API : Introduced since Spark 1.3 is more suitable for querying building because it uses a schema to describe data.
 - Dataset API : Released with Spark 2.0, it combines the best of both RDD and DataFrame API
 
 RDD is the core concept in Spark. It can be simply described as ditributed collection of read-only elements
 
-RDDs can be created by :
+
+###### Creation
+
 - Distributiong an existing collection.
 ```python
 lines = sc.parallelize(["Word1", "Word2", "Word3"])
@@ -97,6 +100,24 @@ lines = sc.testFile("MY FILE")
 ```python
 newLines = lines.transform(...)
 ```
+
+###### Operations
+- Transformation : Create a new RDD from an existing one. Relationship between transformations are recorded in a linear graph which is a DAG
+```python
+inputRDD = sc.textFile("input.txt")
+errorRDD = inputRDD.filter(lambda x : "error" in x)
+warningRDD = inputRDD.filter(lambda x : "warning" in x)
+badlinesRDD = errorRDD.union(warningRDD)
+```
+! At this point, none of the transformation have been executed. Only a DAG is created. RDD transformation will be executed later when action is called
+
+- Operation : Execute operations on RDD. When action is called, entire RDD is performed from scratch. Best practive is to persist intermediate results.
+```python
+print "Bas lines : " + badlinesRDD.count()
+badlinesRDD.take(10)
+```
+
+
 
 
 #### Flow of execution
