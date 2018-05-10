@@ -109,7 +109,7 @@ errorRDD = inputRDD.filter(lambda x : "error" in x)
 warningRDD = inputRDD.filter(lambda x : "warning" in x)
 badlinesRDD = errorRDD.union(warningRDD)
 ```
-! At this point, none of the transformation have been executed. Only a DAG is created. RDD transformation will be executed later when action is called
+! At this point, none of the transformation have been executed. Only a DAG (Direct Acyclic Graph) is created. RDD transformation will be executed later when action is called
 
 - Operation : Execute operations on RDD. When action is called, entire RDD is performed from scratch. Best practive is to persist intermediate results.
 ```python
@@ -117,6 +117,14 @@ print "Bas lines : " + badlinesRDD.count()
 badlinesRDD.take(10)
 ```
 
+###### Operations flow
+1. Driver : Create RDD and distribute to executor
+2. Driver : Lazily evaluates transformation and creates lineage graph
+3. Driver : On an action, schedule tasks on the executor
+4. Executor : Execute transformation on RDD
+5. Executor : Cache RDD if applicable
+6. Executor : Perform actions and return results
+7. Driver : Run action on result on returned results from executors 
 
 
 
