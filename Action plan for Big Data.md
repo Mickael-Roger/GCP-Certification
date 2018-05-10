@@ -85,6 +85,8 @@ SparkContext :
 
 RDD is the core concept in Spark. It can be simply described as ditributed collection of read-only elements
 
+There is also a special RDD called : Key Value pair RDD. Can be created by using directly key/value data or by creting it with the map operation. Shuffle (transfert the same key to the same node) works only with Key Value pair RDD.
+
 
 ###### Creation
 
