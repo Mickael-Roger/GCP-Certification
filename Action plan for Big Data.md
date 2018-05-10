@@ -157,6 +157,7 @@ NoSQL managed service build upon Bigtablee and Megastore
 - Strong consistency and eventual consistency
 
 Structure
+
 | Concept 	                     | Cloud Datastore | Relational database |
 | ----------------------------- | --------------- | ------------------- |
 | Category of object 	          | Kind 	          | Table               |
