@@ -62,6 +62,14 @@ Spark cluster manager supports Standalone, Mesos or Yarn.
 
 Use in-memory storage for RDD as well as disk storage
 
+SparkContext : 
+- Main entry point
+- Define the main driver program
+- Tell spark how and where to access cluster
+- Connects to cluster manager
+- Coordinates spark processes
+- Used to creates RDDs and shares variables accross the cluster
+
 ##### Spark API librairies
 - Spark SQL : Structured data processing
 - Spark streaming : Process livre stream of data
