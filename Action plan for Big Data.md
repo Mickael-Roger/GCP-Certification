@@ -40,6 +40,20 @@ Docker image
 
 ### Hadoop
 ### HDFS
+#### Architecture
+
+Master / Slave architecture. 
+
+Namenode acted as a master and manage the filesystem and regulates access by clients. It makes all decisions about the replication and maintain the filesystem Metadata (in the file FsImage sotred locally).
+
+Datanode acted as a slave and manage storage attached to the node. Datanode manage block creation, deletion and replication. They send Heartbeat periodically to the Namenode.
+
+Support hierarchical file organization but do not support link.
+
+For replicas placement HDFS cares about the rack the node is in.
+
+
+
 ### Hive
 ### Pig
 ### Spark
