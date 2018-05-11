@@ -45,14 +45,21 @@ Docker image
 Master / Slave architecture. 
 
 Namenode acted as a master and manage the filesystem and regulates access by clients. It makes all decisions about the replication and maintain the filesystem Metadata (in the file FsImage sotred locally).
+Namenode is a SPOF.
 
 Datanode acted as a slave and manage storage attached to the node. Datanode manage block creation, deletion and replication. They send Heartbeat periodically to the Namenode.
 
 Support hierarchical file organization but do not support link.
 
 For replicas placement HDFS cares about the rack the node is in.
+Files are not delete immediatly. Deleted files are plaed in /trash and have been removed later (default policy : 6 hours)
 
-
+#### Command
+```bash
+hadoop fs -ls /
+hdaoop fs -mkdir /test
+hadoop fs -cp file /dir/
+```
 
 ### Hive
 ### Pig
