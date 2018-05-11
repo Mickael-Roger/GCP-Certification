@@ -39,6 +39,7 @@ Docker image
 ![Hadoop_ecosystem](https://www.safaribooksonline.com/library/view/hadoop-essentials/9781784396688/graphics/3765_02_06.jpg)
 
 ### Hadoop
+Consists of Haddop common, HDFS, MapReduce and Yarn
 ### HDFS
 #### Architecture
 
@@ -61,8 +62,32 @@ hdaoop fs -mkdir /test
 hadoop fs -cp file /dir/
 ```
 
+
+### YARN
+#### Architecture
+Composed of a global ressource manager (RM) and a per-application master (AM) - two separate daemons
+
+A container in YARN is a gorup of ressources (CPU, RAM, Disk)
+
+- Ressource manager : Arbitrate ressources among all applications in the cluster. 
+Additionally, on each node runs a NodeManager. It's responsible for containers, monitoring their ressources usage and reporting to the RM.
+- Per-application master : Negociate ressources with the RM and work with the nodemanager to execute and monitore tasks
+
+Ressource manager is composed of 2 components:
+- Scheduler : Allocate ressources to various running applications
+- Application manager : Accept job submission, negotiate the first container to Applicaiton Master
+
+```bash
+yarn application -list
+yarn node -list
+```
+
 ### Hive
 ### Pig
+
+
+
+
 ### Spark
 #### Architecture
 Spark stack 
