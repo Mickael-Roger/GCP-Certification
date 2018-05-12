@@ -83,9 +83,29 @@ yarn node -list
 ```
 
 ### Hive
+#### Definition
+It's a datawarehouse built on top of Hadoop MapReduce framework.
+
+It provides:
+- Datawarehouse tasks like ETL, data summarization, query and analysis
+- Can access files stored in HDFS or other mechanism like HBase
+- SQL-like interface called HiveQL
+- Command line interface 
+
+Tables and Databases are created first, then data is loaded into them.
+Hive engine compiles HiveQL into MapReduce jobs.
+
+
 ### Pig
+#### Definition
+Provides script capabilities as an alternative to MapReduce java jobs. 
+
+Pig is composed of 2 components:
+- Pig Latin : Language to write scripts
+- Runtime environnement : Convert script to MapReduce programs
 
 
+While Hive is for querying data, pig is for preparing data to make it suitable for querying
 
 
 ### Spark
