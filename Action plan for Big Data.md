@@ -229,6 +229,7 @@ Preemptibles VM only function as processing nodes and do not store data for the 
 
 It's a colum storage (Each column is stored i a separate, compressed and encrypted file)
 
+## Advanced SQL processing
 - Subqueries is supported:
 ```SQL
 SELECT
@@ -257,6 +258,18 @@ FROM
 ```
 
 - Join on multiple tables are supported
+
+- WITH, ARRAY and STRUCT are supported
+```SQL
+WITH res1 AS (
+SELECT x, y, z ...
+)
+SELECT a,
+  ARRAY( SELECT AS STRUCT c, d FROM ...)
+FROM res1
+```
+
+
 
 
 ## Storage and loading data
