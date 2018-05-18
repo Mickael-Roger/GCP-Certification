@@ -7,7 +7,7 @@
    - Hive
    - Pig
    - Spark
- - BigQuery*
+ - BigQuery
  - GCS
  - Datastore
  - BigTable*
@@ -219,6 +219,58 @@ Preemptibles VM only function as processing nodes and do not store data for the 
 - Split and store a file in GCS
 - Process it in parralel
 
+
+
+# BigQuery
+## Architecture
+- A project (tenant) is ocmposed of one or more Dataset.
+- A dataset (ACL for reader/writer/owner at this level) contains one or more table
+- A table is a collection of columns
+
+It's a colum storage (Each column is stored i a separate, compressed and encrypted file)
+
+- Subqueries is supported:
+```SQL
+SELECT
+   xxx
+FROM
+   (SELECT yy FROM ....)
+WHERE
+   ccc
+```
+
+- Multitable queries are supported
+```SQL
+SELECT
+   xxx
+FROM
+   Table1,
+   Table2,
+   Table3
+```
+Even with a Wildcard
+```SQL
+SELECT
+   xxx
+FROM
+   TABLE_DATE_RANGE(myproject:applogs.events_, TIMESTAMP(2018-01-01), TIMESTAMP(2018-03-30))
+```
+
+- Join on multiple tables are supported
+
+
+## Storage and loading data
+Data used by Bigquery can be stored in:
+- BigQuery storage (table) using
+  - bq command line
+  - WebUI
+  - API
+- GCS
+  - gsutil
+
+
+## Commands
+- bq load --source_format=NEWLINE_DELIMITED_JSON air_dataset.new_tbl gs://xxx/yy*.json schema.json
 
 
 
