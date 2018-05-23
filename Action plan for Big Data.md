@@ -286,7 +286,7 @@ WHERE
 LIMIT 10
 ```
 - Replace author.email by author and give all author's information : author.name, author.email, author.address, ...
-- diff.new_path can be replace by difference[OFFSET(0)].new_path -> because difference is a table inside a row
+- diff.new_path can be replace by difference[OFFSET(0)].new_path -> because difference is an array inside a row
 
 
 
