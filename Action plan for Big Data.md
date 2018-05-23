@@ -270,6 +270,24 @@ FROM res1
 ```
 
 
+- UNNEST : The UNNEST operator takes an ARRAY and returns a table, with one row for each element in the ARRAY
+```SQL
+SELECT
+  author.email,
+  diff.new_path AS path,
+  author.date
+FROM
+  `bigquery-public-data.github_repos.commits`,
+  UNNEST(difference) diff
+WHERE
+  EXTRACT(YEAR
+  FROM
+    author.date)=2016
+LIMIT 10
+```
+- Replace author.email by author and give all author's information : author.name, author.email, author.address, ...
+- diff.new_path can be replace by difference[OFFSET(0)].new_path -> because difference is a table inside a row
+
 
 
 ## Storage and loading data
