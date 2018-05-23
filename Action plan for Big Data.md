@@ -319,6 +319,32 @@ Data used by Bigquery can be stored in:
 - GCS
   - gsutil
 
+## Pricing and optimization
+Price is based on :
+ - Storage
+     - Amount of data in table
+     - Ingest rate of streaming data
+     - Automatic discount for old data
+ - Processing (1TB/month for free)
+ - Free operations
+     - Loading
+     - Exporting
+     - Query on metadata
+     - Queriy in error
+     - Cached query (! per user cache)
+
+Optimization through
+- Dont' process unnecessary columns
+- Do biggest JOIN first
+- Built-in function are faster than javacript UDF (use APPROX function if possible - example : use APPROX_COUNT_DISTINCT instead of COUNT)
+
+
+## Partitioning
+2 ways :
+- Use wildcard table : FROM table_*
+- Use partitioned table : --time_partitioning_type (--time_partitioning_expiration to delete old data)
+
+
 
 ## Commands
 - bq load --source_format=NEWLINE_DELIMITED_JSON air_dataset.new_tbl gs://xxx/yy*.json schema.json
