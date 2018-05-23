@@ -271,6 +271,26 @@ FROM res1
 
 
 - UNNEST : The UNNEST operator takes an ARRAY and returns a table, with one row for each element in the ARRAY
+    - Example
+
+
+| Name | email | array_of_x |
+| ---- | ----- | ---------- |
+| per1 | mail1 | blablabla1 |
+|      |       | blablabla2 |
+      
+      
+Become
+
+
+| Name | email | array_of_x |
+| ---- | ----- | ---------- |
+| per1 | mail1 | blablabla1 |
+| per1 | mail1 | blablabla2 |
+
+    
+    
+    
 ```SQL
 SELECT
   author.email,
