@@ -455,3 +455,37 @@ Or REST API : curl -v -s -H "Content-Type: application/json" https://vision.goog
 - Analyze a text
 
 
+
+# DataFlow
+## Architecture
+Based on Apache Beam. It's a unified model for defining both stream and batch data-parallel processing pipelines.
+
+The programm that defines the pipeline is built on of the supported beam SDK (mainly Java and Python).
+
+Then, the pipeline is executed by a distributed processing backends (Apex, Spark, Flink or DataFlow). Dataflow is the execution environnment on GCP.
+
+It's particularly efficient for data processing task in which the problem can be split into many smaller bundle of data that can be processed independently and in parallel. Beam can be used as an ETL (Extract Transform and Load) and pure data integration.
+
+
+## Usage
+For streaming data, you have to applying a sliding window (for group, average, ... for instance)
+
+A pipeline is a direct graph of steps.
+
+### Java
+
+```java
+Pipeline p = Pipeline.create(PipelineOptionsFactory.fromAgrs(arg))
+
+p.apply(TestIO.Read.from("gs://..."))
+ .apply(new CountWords())
+ .ParDo.of(...
+ .apply(TestIO.Write.to("gs://..."));
+ 
+p.run();
+```
+
+### Python
+
+
+
