@@ -472,6 +472,10 @@ For streaming data, you have to applying a sliding window (for group, average, .
 
 A pipeline is a direct graph of steps.
 
+Use PCollection - Each step generates a PCollection
+
+Prefer combine over GroupByKey
+
 ### Java
 
 ```java
