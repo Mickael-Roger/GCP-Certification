@@ -487,5 +487,18 @@ p.run();
 
 ### Python
 
+- For 1 to 1 relation between input and output : Map function
+- For non 1 to 1 relation : FlatMap function
+
+```python
+p = beam.Pipeline(argv=sys.argv)
+
+(p
+   | 'GetLine' >> beam.io.ReadFromText(input)
+   | 'Grep' >> beam.FlatMap(lambda line: my_grep(line, searchTerm) )
+   | 'write' >> beam.io.WriteToText(output_prefix)
+)
+```
+
 
 
