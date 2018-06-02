@@ -462,6 +462,8 @@ Based on Apache Beam. It's a unified model for defining both stream and batch da
 
 The programm that defines the pipeline is built on of the supported beam SDK (mainly Java and Python).
 
+Use PCollection - All steps generate a PCollection
+
 Then, the pipeline is executed by a distributed processing backends (Apex, Spark, Flink or DataFlow). Dataflow is the execution environnment on GCP.
 
 It's particularly efficient for data processing task in which the problem can be split into many smaller bundle of data that can be processed independently and in parallel. Beam can be used as an ETL (Extract Transform and Load) and pure data integration.
@@ -472,9 +474,16 @@ For streaming data, you have to applying a sliding window (for group, average, .
 
 A pipeline is a direct graph of steps.
 
-Use PCollection - Each step generates a PCollection
+### Map Reduce Dataflow
 
-Prefer combine over GroupByKey
+ParDo - Act of Map in Map Reduce and use parallelization. Useful for : Filtering, converting, extracting parts of an input, calculating value from different parts of an input
+
+For python only :
+- For 1 to 1 relation between input and output : Map function
+- For non 1 to 1 relation : FlatMap function
+
+Prefer combine over GroupByKey because GroupByKey explicitly create a key-pair value.
+Combine contains many pre-built in functions like sum, mean, ... and can be also applied to a grouped Key-Value pair
 
 ### Java
 
@@ -490,9 +499,6 @@ p.run();
 ```
 
 ### Python
-
-- For 1 to 1 relation between input and output : Map function
-- For non 1 to 1 relation : FlatMap function
 
 ```python
 p = beam.Pipeline(argv=sys.argv)
