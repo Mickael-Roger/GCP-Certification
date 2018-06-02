@@ -510,5 +510,18 @@ p = beam.Pipeline(argv=sys.argv)
 )
 ```
 
+Use DataFlow runner
+
+```bash
+python -m my_script_without_extension \
+  --project $PROJECT \
+  --runner DataflowRunner \
+  --staging_location $BUCKET/staging \
+  --temp_location $BUCKET/temp \
+  --output $BUCKET/results/output
+```
+
+
+
 
 
