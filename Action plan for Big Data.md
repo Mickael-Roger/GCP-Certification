@@ -485,6 +485,12 @@ For python only :
 Prefer combine over GroupByKey because GroupByKey explicitly create a key-pair value.
 Combine contains many pre-built in functions like sum, mean, ... and can be also applied to a grouped Key-Value pair
 
+### In memory object
+Static in memory Data to be used by DataFlow
+
+### Side input
+Convert another PCollection to a view and use it as a second PCollection to be conbime with your currently PCollection.
+
 ### Java
 
 ```java
