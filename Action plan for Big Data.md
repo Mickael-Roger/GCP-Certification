@@ -491,6 +491,11 @@ Static in memory Data to be used by DataFlow
 ### Side input
 Convert another PCollection to a view and use it as a second PCollection to be conbime with your currently PCollection.
 
+#### Streaming
+Use sliding Window and duration. For example : Duration : 2mn and every : 30s
+
+Subsequent groups, aggregations, ... are only compute on Window
+
 ### Java
 
 ```java
