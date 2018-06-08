@@ -551,3 +551,10 @@ Everything that goes to the ML Model has to be numeric
 - 2-Dimension array is a matrix
 - n-Dimension array is a Tensor
 
+## ML Terms
+- Weights : Parameters we try to optimize
+- Batch size : Part of the dataset we use to calculate the result of a new weight 
+- Epoch : One pass through the entire Dataset. For example if the Dataset is 100k and the batch is 1k, the epoch consists of 100 batches or steps
+- Gradient descent : The process of increasing or decreasing the weight to reduce the errors
+- Evaluation : Step where we define if the model is good enough
+- Training : Process of optimizing the weight and evaluate the model
