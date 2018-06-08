@@ -532,7 +532,22 @@ python -m my_script_without_extension \
   --output $BUCKET/results/output
 ```
 
+# Machine Learning
 
+2 types:
+- Supervised Learning : Use Labels
+- Unsupervised Learning : Data is not labeled
 
+On supervised Learning there are 2 types of models :
+- Regression model : When label is a continous number (for exemple predict the weigth of a baby or the tip in a restaurant)
+- Classification model : When label is a class (for example predict the sex of a Baby)
 
+Everything that goes to the ML Model has to be numeric
+- Images are converted to tensor (red, green, blue)
+- Text are converted to tensor using a number for each word. Many, plenty and much for example has to have a number relatively close and very far from car. Theses models for text has already been done
+
+## Tensor
+- 1-Dimension array is a vector
+- 2-Dimension array is a matrix
+- n-Dimension array is a Tensor
 
