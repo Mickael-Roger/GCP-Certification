@@ -558,3 +558,9 @@ Everything that goes to the ML Model has to be numeric
 - Gradient descent : The process of increasing or decreasing the weight to reduce the errors
 - Evaluation : Step where we define if the model is good enough
 - Training : Process of optimizing the weight and evaluate the model
+
+- Neuron : One unit of combining inputs
+- Hidden layer : Set of neurons that operate on the same set of inputs
+- Inputs : What you feed in a neuron
+- Features : Transformation of a neuron. For instance x^2
+
