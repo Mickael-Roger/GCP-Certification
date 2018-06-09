@@ -564,3 +564,43 @@ Everything that goes to the ML Model has to be numeric
 - Inputs : What you feed in a neuron
 - Features : Transformation of a neuron. For instance x^2
 
+## Dataset
+
+A good Dataset cover all cases and have negative examples and near-misses
+
+## Error metrics
+Get all the errors, square each error value and calculate the mean (avg) value and you get : MSE (Mean Squared Error)
+
+MSE is used for regression model
+Corss entropy is used for a classification problem
+
+## Accuracy : Used for a balanced Dataset
+
+To simply define the accuracy, we use a confusion matrix
+
+| -------------- | -------------- |
+| True positive  | False Negative |
+| False positive | True Negative  |
+| -------------- | -------------- |
+
+
+Accuracy is the fraction of correct prediction (True positive and True Negative) divide by all predictions
+
+Accuracy fails if dataset unbalanced. For example : A parking lot with 1000 parking space has only 10 free. The ML model detect only one of the free space but accuracy is 0.991 because it detects all used parking space
+
+## Precision and Recall : Used for an unbalanced Dataset
+### Precision
+
+Precision = Accurracy when classifier say "yes"
+
+Precision = Positive predictive value. For example on 5 images (TP + FP = 5), there are only 2 TP.
+Precision = TP / (TP + FP) = 2/5 = 40%
+
+### Recall 
+
+Recall : Accuracy when the truth is yes
+
+Recall = Fraction of ML finds = TP / (TP + FN )
+
+
+
