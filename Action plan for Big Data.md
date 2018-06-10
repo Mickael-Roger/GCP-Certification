@@ -25,7 +25,9 @@ Based on Jupyter
 
 Docker image
 
-## Notes
+## Command
+
+On cloud shell : datalab create dataengvm --zone <ZONE>
 
 
 ## Scenario
@@ -578,6 +580,8 @@ Corss entropy is used for a classification problem
 
 To simply define the accuracy, we use a confusion matrix
 
+
+|                |                |
 | -------------- | -------------- |
 | True positive  | False Negative |
 | False positive | True Negative  |
