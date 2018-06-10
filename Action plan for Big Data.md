@@ -585,7 +585,7 @@ To simply define the accuracy, we use a confusion matrix
 | -------------- | -------------- |
 | True positive  | False Negative |
 | False positive | True Negative  |
-| -------------- | -------------- |
+
 
 
 Accuracy is the fraction of correct prediction (True positive and True Negative) divide by all predictions
