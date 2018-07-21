@@ -571,6 +571,14 @@ Everything that goes to the ML Model has to be numeric
 
 A good Dataset cover all cases and have negative examples and near-misses
 
+Dataset has to be split in :
+- Training data
+- Validation data
+- "Test Data"
+
+![Dataset_Usage](http://www.mickael-roger.com/tmp/dataset.png)
+
+
 ## Error metrics
 Get all the errors, square each error value and calculate the mean (avg) value and you get : MSE (Mean Squared Error)
 
@@ -607,13 +615,59 @@ Recall : Accuracy when the truth is yes
 
 Recall = Fraction of ML finds = TP / (TP + FN )
 
-## Datasets
 
-Dataset has to be split in :
-- Training data
-- Validation data
+## TensorFlow
 
-![Dataset_Usage](http://www.mickael-roger.com/tmp/dataset.png)
+It's an opensource library for numerical computation that uses directed graphs
+
+TF generate a directed graph that represent the computation
+Nodes represent mathematical operations (like adding, ...)
+Edges connect the nodes
+
+The python API lets build and run directed graph
+
+Build Example -> Only create a directed graph
+```python
+c = tf.add(a,b)
+```
+
+Run Example -> Execute the directed graph
+```python
+session = tf.Session()
+numpy_c = session.run(c, feed_dict=...)
+```
+
+TensorFlow does lazy evaluation : You need to run the graph to have the result.
+Example:
+
+Build
+```python
+a = tf.constant([5, 3, 8])
+b = tf.constant([3, -1, 2])
+c = tf.add(a, b)
+print c
+```
+
+Result -> Only the directed graph
+```
+Tensor("Add_7:0", shape=(3,), dtype=int32)
+```
+
+Run
+```python
+with tf.Session() as sess:
+   result = sess.run(c)
+   print result
+```
+Result
+```
+[8, 2, 10]
+```
+
+### Estimator API : tf.estimator
+
+Set up machine learning model : Regression or classification problem; labels; features; ...
+
 
 
 
