@@ -547,6 +547,7 @@ On supervised Learning there are 2 types of models :
 Everything that goes to the ML Model has to be numeric
 - Images are converted to tensor (red, green, blue)
 - Text are converted to tensor using a number for each word. Many, plenty and much for example has to have a number relatively close and very far from car. Theses models for text has already been done
+- Numeric values has to have a relation between them : For example customer_id can't be used because customer 2 is not twice more something than customer 1
 
 ## Tensor
 - 1-Dimension array is a vector
@@ -574,17 +575,17 @@ A good Dataset cover all cases and have negative examples and near-misses
 Get all the errors, square each error value and calculate the mean (avg) value and you get : MSE (Mean Squared Error)
 
 MSE is used for regression model
-Corss entropy is used for a classification problem
+Cross entropy is used for a classification problem
 
 ## Accuracy : Used for a balanced Dataset
 
 To simply define the accuracy, we use a confusion matrix
 
-
-|                |                |
-| -------------- | -------------- |
-| True positive  | False Negative |
-| False positive | True Negative  |
+                 |            ML Says              |
+|                |      Cat       |     Not Cat    |
+|  Truth         | -------------- | -------------- |
+|       Cat      | True positive  | False Negative |
+|   Not Cat      | False positive | True Negative  |
 
 
 
@@ -605,6 +606,15 @@ Precision = TP / (TP + FP) = 2/5 = 40%
 Recall : Accuracy when the truth is yes
 
 Recall = Fraction of ML finds = TP / (TP + FN )
+
+## Datasets
+
+Dataset has to be split in :
+- Training data
+- Validation data
+
+![Dataset_Usage](http://www.mickael-roger.com/tmp/dataset.png)
+
 
 
 
