@@ -666,6 +666,8 @@ Result
 
 ### Estimator API : tf.estimator
 
+Estimator APi : High level "out of the box" API does distributed training
+
 Set up machine learning model : Regression or classification problem; labels; features; ...
 Step to define an estimator APi model : 
 
