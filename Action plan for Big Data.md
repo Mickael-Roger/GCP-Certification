@@ -667,8 +667,43 @@ Result
 ### Estimator API : tf.estimator
 
 Set up machine learning model : Regression or classification problem; labels; features; ...
+Step to define an estimator APi model : 
+1/ Set up features columns
+```python
+feat_cols = [tf.feature_column.umeric_column("sq_footage")]
+```
+2/ Create the model passing in the feature columns
+```python
+model = tf.estimator.LinearRegressor(featcols, '.file-model-saved')
+```
+3/ Write input_fn returns features, labels
+```python
+def train_input_fn():
+   features = {"sq_footage": tf.constant([100, 200])}
+   labels = tf.constant([50, 100])
+   return features, labels
+```
+4/ Train the model
+```python
+model.train(train_input_fn, steps = 100)
+```
+5/ Use train model to predict
+```python
+def pred_input_fn():
+   features = {"sq_footage": tf.constant([150, 180])}
+   return features
+out = trained.predict(pred_input_fn)
+```
 
+#### Different types of regressors
 
+- LinearRegressor
+- DNNRegressor : Deep Neureal Network
+```python
+model = DNNRegressor(feature_columns, hidden_units=[128, 64, 32])       # 5 layers : Input, 128 nodes, 64 nodes, 32 nodes, output
+```
+- LinearClassifier
+- DNNClassifier
 
 
 
