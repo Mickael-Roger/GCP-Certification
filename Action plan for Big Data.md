@@ -206,6 +206,8 @@ badlinesRDD.take(10)
 - Executors run the tasks and return the results to the driver
 - At the end of the application, executors are terminated and cluster manager release the ressources
 
+## Command
+Dataproc custom machine : --master-machine type OR --worker-machine-type custom-6-30720 -> 6vCPU, 30Go RAM
 
 
 ## Notes
