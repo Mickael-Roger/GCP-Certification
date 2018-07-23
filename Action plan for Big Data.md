@@ -668,6 +668,7 @@ Result
 
 Set up machine learning model : Regression or classification problem; labels; features; ...
 Step to define an estimator APi model : 
+
 1/ Set up features columns
 ```python
 feat_cols = [tf.feature_column.umeric_column("sq_footage")]
