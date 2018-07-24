@@ -711,4 +711,27 @@ model = DNNRegressor(feature_columns, hidden_units=[128, 64, 32])       # 5 laye
 - DNNClassifier
 
 
+### Improving ML
+#### Use Big Dataset
+Use a function to read shared CSV files instead of using a small set of data that can stand on the memory
+
+```python
+dataset = tf.data.TextLineDataset(filnames).map(decode_csv)   #decode_csv is our own function to decode csv file and define used features, labels, ...
+```
+#### Distributing
+For distributed training, it's important to shuffle the data
+For distributed operation :
+- Distribute the graph
+- Share variables
+- Evaluate every once in a while
+- Handle machine failure
+- Create checkpoint files
+- Recover from failure
+- Save summaries for tensorboard
+
+Use the graphical interface tensorboard to monitor trainning
+
+
+### Cloud ML Engine
+
 
