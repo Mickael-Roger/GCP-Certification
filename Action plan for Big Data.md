@@ -734,4 +734,15 @@ Use the graphical interface tensorboard to monitor trainning
 
 ### Cloud ML Engine
 
+Manage scalability for training, hyper parameter tuning and even the deployement of the model to give an API access to it
+
+Steps :
+- Use tensorflow to create computation graph and training application
+- Package your trainer application
+   - dd
+- Configure and start Cloud ML jobs
+
+
+
+
 
