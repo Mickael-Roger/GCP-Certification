@@ -718,7 +718,7 @@ Use a function to read shared CSV files instead of using a small set of data tha
 ```python
 dataset = tf.data.TextLineDataset(filnames).map(decode_csv)   #decode_csv is our own function to decode csv file and define used features, labels, ...
 ```
-#### Distributing
+##### Distributing
 For distributed training, it's important to shuffle the data
 For distributed operation :
 - Distribute the graph
@@ -732,10 +732,36 @@ For distributed operation :
 Use the graphical interface tensorboard to monitor trainning
 
 #### Features engineering
+##### Good features
+Good features are :
+- Related to the objective
+- Should be known at production time
+   - Temporality of the data is very important
+- Has to be numeric with meaningful magnitude
+   - For instance employee_id has to be define not has a number but has to be converted has a categorical value
+- Has enough examples for each category
+   - For example with the credit card fraud detection, you must have lots of no fraud AND fraud transaction samples
+- Brings human insight to problem
 
+Bucketizing : Group values in a bucket. For example for house price prediction, do not use the latitude and longitude value but group them in a kind of matrice
 
+### Model architecture
+#### Linear Model
+Works very well for sparses features (like categorical employee ID)
 
+#### Deep Neural Network
+Works very well for tensors like pictures
 
+#### Wide and Deep Model
+Can be used both together because in reality some data are sparsed and some are not
+```python
+tf.estimator.DNNLinearCombinedClassifier(...)
+```
+
+#### Where to do features engineering
+- In tensorflow : Advantage : Are made in the same way in both training and serving
+- In Dataflow : Ideal for features with time window aggregation
+- In a pre processing job : Ideal for scaling preprocessing and use metadata
 
 ### Cloud ML Engine
 
@@ -751,6 +777,7 @@ Steps :
    - __init__.py : Needed by python (package)
    - Use gcloud command to summit the job locally or to the cloud
 - Configure and start Cloud ML jobs
+   - Use feature crossing (group features together)
 
 
 
