@@ -745,23 +745,28 @@ Good features are :
 
 Bucketizing : Group values in a bucket. For example for house price prediction, do not use the latitude and longitude value but group them in a kind of matrice
 
-### Model architecture
-#### Linear Model
+#### Model architecture
+##### Linear Model
 Works very well for sparses features (like categorical employee ID)
 
-#### Deep Neural Network
+##### Deep Neural Network
 Works very well for tensors like pictures
 
-#### Wide and Deep Model
+##### Wide and Deep Model
 Can be used both together because in reality some data are sparsed and some are not
 ```python
 tf.estimator.DNNLinearCombinedClassifier(...)
 ```
 
-#### Where to do features engineering
+##### Where to do features engineering
 - In tensorflow : Advantage : Are made in the same way in both training and serving
 - In Dataflow : Ideal for features with time window aggregation
 - In a pre processing job : Ideal for scaling preprocessing and use metadata
+
+
+#### Hyper paramter tuning
+Learning rate, batch size, number of bucket, ... are very important to have a good result
+
 
 ### Cloud ML Engine
 
