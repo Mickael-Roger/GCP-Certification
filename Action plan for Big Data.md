@@ -731,17 +731,26 @@ For distributed operation :
 
 Use the graphical interface tensorboard to monitor trainning
 
+#### Features engineering
+
+
+
+
 
 ### Cloud ML Engine
 
 Manage scalability for training, hyper parameter tuning and even the deployement of the model to give an API access to it
 
+Cloud ML supports batch and online prediction
+
 Steps :
 - Use tensorflow to create computation graph and training application
 - Package your trainer application
-   - dd
+   - task.py : To parse command line parameter and send along to train_and_evaluate
+   - model.py : Contains the ML Model in tensorflow (Estimator API)
+   - __init__.py : Needed by python (package)
+   - Use gcloud command to summit the job locally or to the cloud
 - Configure and start Cloud ML jobs
-
 
 
 
