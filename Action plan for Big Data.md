@@ -13,9 +13,9 @@
  - BigTable *
  - Pub/Sub *
  - Dataflow
- - Machine Learning *
-   - Tensor Flow *
-   - ML Engine *
+ - Machine Learning
+   - Tensor Flow
+   - ML Engine
  - Machine learning API : Vision, Speech, Jobs, Translation and Natural Language
  
 
