@@ -216,9 +216,13 @@ Dataproc custom machine : --master-machine type OR --worker-machine-type custom-
    - Viewer : Viaw access
    - Worker : Assigned to service account (R/W GCS, Write to cloud Logging)
 
+## Migrating HADOOP on premise to Google Cloud
+
+
 ## Notes
 Preemptibles VM only function as processing nodes and do not store data for the HDFS cluster
 When creating a cluster, create a specific bucket if not specified
+Access through the Web Console : Port 8088 for Hadoop and 9870 for HDFS
 
 ## Scenario
 - Create an hadoop cluster
