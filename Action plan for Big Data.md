@@ -209,9 +209,16 @@ badlinesRDD.take(10)
 ## Command
 Dataproc custom machine : --master-machine type OR --worker-machine-type custom-6-30720 -> 6vCPU, 30Go RAM
 
+## IAM
+- Project level only (primitive and predefined roles)
+- Roles :
+   - Editor : Full access. Create/Delete/Edit Clusters/Jobs/Workflows
+   - Viewer : Viaw access
+   - Worker : Assigned to service account (R/W GCS, Write to cloud Logging)
 
 ## Notes
 Preemptibles VM only function as processing nodes and do not store data for the HDFS cluster
+When creating a cluster, create a specific bucket if not specified
 
 ## Scenario
 - Create an hadoop cluster
