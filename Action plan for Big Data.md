@@ -10,6 +10,7 @@
  - BigQuery
  - GCS
  - Datastore
+ - Spanner
  - BigTable *
  - Pub/Sub *
  - Dataflow
@@ -420,12 +421,28 @@ Only one write per second is recommanded inside each entity group. By default ea
 ### Entity group creation
 Create an entity (For example a company). Declare the entity reference as the parent of all entities you want to group inside this entity group.
 
+## IAM
+- Primitive and predefined
+- Owner, user, viewer, import/export admin, index admin
 
 ## Scenario
 - Create 4 entity group (For 4 differents companies) in a company kind
 - Create tens of users in each entity group
 - Create thousands of users linked to no entity group
 
+
+# Spanner
+
+## Architecture
+SQL compatible Database that horizontaly scale
+Strong consistency ACID transaction
+
+## IAM
+- Project, instance or Database level
+- Admin : Full access to Spanner ressources
+- Database Admin : Create/Edit/Delete/Grant Database
+- Database Reader : Read / Execute
+- Viewer : View Instance and Database (Cannot read or modify Database)
 
 
 # Machine Learning : API
