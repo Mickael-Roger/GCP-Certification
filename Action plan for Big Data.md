@@ -583,6 +583,20 @@ python -m my_script_without_extension \
   --output $BUCKET/results/output
 ```
 
+## IAM
+Project-level only (all pipelines or none)
+
+- Dataflow Admin : Full pipeline access + machine type/storage bucket access 
+- Dataflow Developper : Full pipeline access
+- Dataflow Viewer : View only
+- Dataflow worker : Specifically for service accounts
+
+## Dataflow vs Spark vs HADOOP
+![Dataflow_comparison](http://mickael-roger.com/tmp/dataflow.png)
+
+
+
+
 # Machine Learning
 
 2 types:
