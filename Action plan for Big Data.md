@@ -219,6 +219,23 @@ Dataproc custom machine : --master-machine type OR --worker-machine-type custom-
 
 ## Migrating HADOOP on premise to Google Cloud
 
+Objectives : Separate Data from Compute and consider clusters as ephemeral
+
+- Move Data from HDFS to GCS
+   - Possible exception for HBase to BigTable and Impala to BigQuery
+- Move a small set of dat to experiment
+
+- HDFS -> GCS
+- Hive -> BigQuery
+- HBase -> BigTable
+
+Converting from HDFS to GCS
+- Copy data to GCS (Manualy or through a connector)
+- Update file prefix in script (hdfs:// to gs://)
+- Use Dataproc to run against/output to GCS
+
+End of goal could be to migrate to serverless architecture (DataFlow, BigQuery, ...)
+
 
 ## Notes
 Preemptibles VM only function as processing nodes and do not store data for the HDFS cluster
