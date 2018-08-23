@@ -392,6 +392,8 @@ gsutil acl ch -d AllUsers gs://my-awesome-bucket/kitten.png     # Remove these
 ## Description
 NoSQL managed service build upon Bigtablee and Megastore
 
+DATASTORE IS A TRANSACTIONNAL DATABASE
+
 - Support SQL like queries
 - RESTFul API
 - Transaction and Indexes
