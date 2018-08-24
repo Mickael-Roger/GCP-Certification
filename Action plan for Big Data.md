@@ -464,6 +464,63 @@ Strong consistency ACID transaction
 - Viewer : View Instance and Database (Cannot read or modify Database)
 
 
+
+
+# BigTable
+## Architecture
+Used for huge dataset (petabytes of data)
+High throughtput analics
+
+![BigTable](http://www.mickael-roger.com/tmp/bigtable.png)
+
+- Front-end server serves client request request to node
+- Node process the request. No data is stored on node except the metadata to request the correct tablet
+- SSTable : Tablets (BigTable's table sharded into block of rows)
+
+Storage is separated from from the compute node , though each tablet is associated with a node -> Replication and recovery of node data is very fast as only metadata/pointers need to be updated
+
+Not no-ops 
+
+Entire BigTable project is called 'instance' -> All nodes and clusters
+Nodes grouped into cluster -> 1 or more cluster per instance
+
+Auto-scaling storage
+
+2 types of cluster:
+   - Development : single node -> No replication
+   - Production : 3+ nodes
+   
+Online with no downtime : Cluster resizing (number of nodes)
+
+Interacting with BigTable
+- cbt command-line tool
+- HBase shell
+
+
+## Command line
+
+- configure cbtrc file
+```bash
+echo -e "project = [PROJECT_ID]\ninstance = [INSTANCE_ID]" > ~/.cbtrc
+``
+
+- cbt createtable table_name
+- cbt ls : List tables
+- cbt ls table_name : List columns
+- cbt deletetable table_name
+- cbt read table_name : Read content of the table
+
+
+
+
+
+## IAM
+Project Wide or Instance level
+Read/Write/Manage
+
+
+
+
 # Machine Learning : API
 ## Description
 - Vision : Analyze pictures. Multiple features (text_detection, landmark_detection, web_detection, ...)
@@ -471,7 +528,6 @@ Strong consistency ACID transaction
 - Speech : Analyze audio (gRPC used for streaming)
 - Translation : Translate text (Translate or detect)
 - Natural Language : Analyze text
-
 
 ## Notes
 API access for each componennt has to be activated. Use JSON for response
