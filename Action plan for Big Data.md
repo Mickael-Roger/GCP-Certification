@@ -496,6 +496,48 @@ Interacting with BigTable
 - cbt command-line tool
 - HBase shell
 
+## Data organisation
+
+Organisation
+- One big table
+- Can contain thousands of columns and billions of rows
+- Table is sharded across tablets
+
+Table components
+- Row key
+- Columns grouped into column families
+
+![BigTable_data](http://www.mickael-roger.com/tmp/bigtable_data.png)
+
+Indexing and queries
+- Only the row key is indexed
+- Schema design is necessary for efficient queries
+- Field promotion - Move fields from column data to row key
+
+
+## Schema design
+
+Design best practices
+- Keep all entity info in a single row
+- Related entities should be in adjacent rows
+- Empty column takes no space
+
+Schema efficiency
+- Well define row key - Multiple values in a row key
+- Row key should be sufficient for search
+- Goal : Spread load over multiple nodes
+
+Row key best practices
+- Good row keys : Distributed load
+   - Reverse domain name (com.google.cloud.xxx)
+   - String identifier
+   - Timestamps reverse (20180725031245)
+- Bad row keys : hotspotting
+   - Domain name (www.free.fr)
+   - Sequential ID
+   - Timestamp alone or at front
+
+
 
 ## Command line
 
