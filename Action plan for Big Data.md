@@ -11,7 +11,7 @@
  - GCS
  - Datastore
  - Spanner
- - BigTable *
+ - BigTable
  - Pub/Sub *
  - Dataprep *
  - Data Studio *
