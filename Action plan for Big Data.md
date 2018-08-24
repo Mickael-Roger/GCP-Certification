@@ -502,7 +502,7 @@ Interacting with BigTable
 - configure cbtrc file
 ```bash
 echo -e "project = [PROJECT_ID]\ninstance = [INSTANCE_ID]" > ~/.cbtrc
-``
+```
 
 - cbt createtable table_name
 - cbt ls : List tables
@@ -721,11 +721,11 @@ Cross entropy is used for a classification problem
 
 To simply define the accuracy, we use a confusion matrix
 
-                 |            ML Says              |
-|                |      Cat       |     Not Cat    |
-|  Truth         | -------------- | -------------- |
-|       Cat      | True positive  | False Negative |
-|   Not Cat      | False positive | True Negative  |
+
+|           | ML Says: Cat   | ML Says: Not Cat    |
+| -------------- | -------------- | -------------- |
+|  Truth: Cat      | True positive  | False Negative |
+|  Truth: Not Cat  | False positive | True Negative  |
 
 
 
