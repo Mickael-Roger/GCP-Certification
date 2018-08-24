@@ -524,14 +524,14 @@ Design best practices
 
 Schema efficiency
 - Well define row key - Multiple values in a row key
-- Row key should be sufficient for search
+- Row key (or prefix) should be sufficient for search
 - Goal : Spread load over multiple nodes
 
 Row key best practices
 - Good row keys : Distributed load
    - Reverse domain name (com.google.cloud.xxx)
    - String identifier
-   - Timestamps reverse (20180725031245)
+   - Timestamps reverse (20180725031245) and not a front or only identifier
 - Bad row keys : hotspotting
    - Domain name (www.free.fr)
    - Sequential ID
