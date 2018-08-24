@@ -13,6 +13,8 @@
  - Spanner
  - BigTable *
  - Pub/Sub *
+ - Dataprep *
+ - Data Studio *
  - Dataflow
  - Machine Learning
    - Tensor Flow
