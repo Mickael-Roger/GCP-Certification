@@ -519,6 +519,17 @@ Then, the pipeline is executed by a distributed processing backends (Apex, Spark
 
 It's particularly efficient for data processing task in which the problem can be split into many smaller bundle of data that can be processed independently and in parallel. Beam can be used as an ETL (Extract Transform and Load) and pure data integration.
 
+## Key concept
+- Element - Single entry of data
+- PCollection - Distributed dataset. Input and output data
+- PTransform - Data processing operation
+- ParDo - Type of transform applied to individual element
+
+### Dealing with late/out of order data
+Use 3 concepts:
+- Windows : Logically divide elements group by time span
+- Watermarks : Timestamp (Event Time - When data is generated or Processing Time - When data is processed)
+- Trigger : Late arrived data are reagregate with previously submitted results 
 
 ## Usage
 For streaming data, you have to applying a sliding window (for group, average, ... for instance)
