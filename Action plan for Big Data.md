@@ -20,7 +20,10 @@
    - Tensor Flow
    - ML Engine
  - Machine learning API : Vision, Speech, Jobs, Translation and Natural Language
- 
+
+
+---
+
 
 # Datalab
 ## Description
@@ -37,6 +40,9 @@ On cloud shell : datalab create dataengvm --zone <ZONE>
 - Deploy Datalab on cloud shell
 - Deploy Datalab on Dataproc Master node
 - Analyze connexions between Datalab and Master and Worke node in Dataproc (Using python, java, ...)
+
+
+---
 
 
 # Dataproc
@@ -255,6 +261,9 @@ Access through the Web Console : Port 8088 for Hadoop and 9870 for HDFS
 - Process it in parralel
 
 
+---
+
+
 
 # BigQuery
 ## Architecture
@@ -385,6 +394,9 @@ Optimization through
 - bq load --source_format=NEWLINE_DELIMITED_JSON air_dataset.new_tbl gs://xxx/yy*.json schema.json
 
 
+---
+
+
 
 # GCS
 ## Description
@@ -406,6 +418,10 @@ gsutil acl ch -d AllUsers gs://my-awesome-bucket/kitten.png     # Remove these
 - Create a bucket
 - Put file in the bucket
 - Manage acl of a file
+
+
+---
+
 
 
 # Datastore
@@ -450,6 +466,10 @@ Create an entity (For example a company). Declare the entity reference as the pa
 - Create thousands of users linked to no entity group
 
 
+---
+
+
+
 # Spanner
 
 ## Architecture
@@ -462,6 +482,9 @@ Strong consistency ACID transaction
 - Database Admin : Create/Edit/Delete/Grant Database
 - Database Reader : Read / Execute
 - Viewer : View Instance and Database (Cannot read or modify Database)
+
+
+---
 
 
 
@@ -553,12 +576,12 @@ echo -e "project = [PROJECT_ID]\ninstance = [INSTANCE_ID]" > ~/.cbtrc
 - cbt read table_name : Read content of the table
 
 
-
-
-
 ## IAM
 Project Wide or Instance level
 Read/Write/Manage
+
+
+---
 
 
 
@@ -604,6 +627,9 @@ Or REST API : curl -v -s -H "Content-Type: application/json" https://vision.goog
 - Translate an audio
 - Translate an audio stream
 - Analyze a text
+
+
+---
 
 
 
@@ -705,6 +731,9 @@ Project-level only (all pipelines or none)
 ## Dataflow vs Spark vs HADOOP
 ![Dataflow_comparison](http://mickael-roger.com/tmp/dataflow.png)
 
+
+
+---
 
 
 
