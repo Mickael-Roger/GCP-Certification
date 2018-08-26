@@ -587,6 +587,45 @@ Read/Write/Manage
 
 # Pub/Sub
 
+It's a global, multi-tenanted, manage and real time message service.
+
+## Architecture
+
+A message in Pub/Sub subsists for 7 days
+
+Works with topics and subscriptions
+
+It's possible to have multiple subscribers share the work of processing the messages in a single subscription
+
+Delivery garanty :
+- A subscriber ACK each message for every subscription
+- A message is resent if subscriber takes more than "ackDeadline" to respond
+- A subscriber can extend the deadline per message
+
+Pub/Sub deliver at least once, Dataflow deduplicate, order and window -> Work well together
+
+It's a global service where a single namespace is shared around the world :
+- The message is store to the closest region of the publisher
+
+Offer push and pull to subscribers
+
+Metadata can be passed to the message with a form of a key-value pair (Ofen used for passing the timestamp of the message)
+
+Message can be publish as batch. Many message can be sent grouped -> Good idea if there are lots of message to send
+
+
+## PULL vs PUSH
+
+- PULL : Subscribers make API call periodically
+- PUSH : Endpoints can only be HTTPs servers accepting webhook
+
+
+## Commands
+
+- Create a topic : `gcloud pubsub topics create NAME`
+- Publish : `gcloud pubsub topics publish NAME --message "MESSAGE"`
+- Create a subscription : `gcloud pubsub subscriptions create --topic TOPIC_NAME SUBSCRIPTION_NAME`
+- Get message : `gcloud pubsub subscriptions pull --auto-ack SUBSCRIPTION_NAME`
 
 
 ---
