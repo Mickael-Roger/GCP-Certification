@@ -55,7 +55,7 @@ Consists of Hadoop common, HDFS, MapReduce and Yarn
 ### HDFS
 #### Architecture
 
-Master / Slave architecture. 
+Master / Slave architecture.
 
 Namenode acted as a master and manage the filesystem and regulates access by clients. It makes all decisions about the replication and maintain the filesystem Metadata (in the file FsImage sotred locally).
 Namenode is a SPOF.
@@ -81,7 +81,7 @@ Composed of a global ressource manager (RM) and a per-application master (AM) - 
 
 A container in YARN is a gorup of ressources (CPU, RAM, Disk)
 
-- Ressource manager : Arbitrate ressources among all applications in the cluster. 
+- Ressource manager : Arbitrate ressources among all applications in the cluster.
 Additionally, on each node runs a NodeManager. It's responsible for containers, monitoring their ressources usage and reporting to the RM.
 - Per-application master : Negociate ressources with the RM and work with the nodemanager to execute and monitore tasks
 
@@ -102,7 +102,7 @@ It provides:
 - Datawarehouse tasks like ETL, data summarization, query and analysis
 - Can access files stored in HDFS or other mechanism like HBase
 - SQL-like interface called HiveQL
-- Command line interface 
+- Command line interface
 
 Tables and Databases are created first, then data is loaded into them.
 Hive engine compiles HiveQL into MapReduce jobs.
@@ -110,7 +110,7 @@ Hive engine compiles HiveQL into MapReduce jobs.
 
 ### Pig
 #### Definition
-Provides script capabilities as an alternative to MapReduce java jobs. 
+Provides script capabilities as an alternative to MapReduce java jobs.
 
 Pig is composed of 2 components:
 - **Pig Latin** : Language to write scripts
@@ -140,7 +140,7 @@ Spark cluster manager supports Standalone, Mesos or Yarn.
 
 Use in-memory storage for RDD as well as disk storage
 
-SparkContext : 
+SparkContext :
 - Main entry point
 - Define the main driver program
 - Tell spark how and where to access cluster
@@ -157,7 +157,7 @@ SparkContext :
 
 ##### Resilient Distributed Datasets
 ###### RDD definitions
-- RDD is the core data API. 
+- RDD is the core data API.
 - DataFrame API : Introduced since Spark 1.3 is more suitable for querying building because it uses a schema to describe data.
 - Dataset API : Released with Spark 2.0, it combines the best of both RDD and DataFrame API
 
@@ -172,7 +172,7 @@ There is also a special RDD called : Key Value pair RDD. Can be created by using
 ```python
 lines = sc.parallelize(["Word1", "Word2", "Word3"])
 ```
-- Loading an external dataset 
+- Loading an external dataset
 ```python
 lines = sc.testFile("MY FILE")
 ```
@@ -204,7 +204,7 @@ badlinesRDD.take(10)
 4. Executor : Execute transformation on RDD
 5. Executor : Cache RDD if applicable
 6. Executor : Perform actions and return results
-7. Driver : Run action on result on returned results from executors 
+7. Driver : Run action on result on returned results from executors
 
 
 
@@ -324,8 +324,8 @@ FROM res1
 | ---- | ----- | ---------- |
 | per1 | mail1 | blablabla1 |
 |      |       | blablabla2 |
-      
-      
+
+
 Become
 
 
@@ -334,9 +334,9 @@ Become
 | per1 | mail1 | blablabla1 |
 | per1 | mail1 | blablabla2 |
 
-    
-    
-    
+
+
+
 ```SQL
 SELECT
   author.email,
@@ -410,7 +410,7 @@ Object storage :
 
 
 ## Notes
-Manage ACL rights: 
+Manage ACL rights:
 ```console
 gsutil acl ch -u AllUsers:R gs://my-awesome-bucket/kitten.png   # Grant read access to AllUsers
 gsutil acl ch -d AllUsers gs://my-awesome-bucket/kitten.png     # Remove theses accesses
@@ -504,7 +504,7 @@ High throughtput analics
 
 Storage is separated from from the compute node , though each tablet is associated with a node -> Replication and recovery of node data is very fast as only metadata/pointers need to be updated
 
-Not no-ops 
+Not no-ops
 
 Entire BigTable project is called 'instance' -> All nodes and clusters
 Nodes grouped into cluster -> 1 or more cluster per instance
@@ -514,7 +514,7 @@ Auto-scaling storage
 2 types of cluster:
    - Development : single node -> No replication
    - Production : 3+ nodes
-   
+
 Online with no downtime : Cluster resizing (number of nodes)
 
 Interacting with BigTable
@@ -585,7 +585,11 @@ Read/Write/Manage
 
 ---
 
+# Pub/Sub
 
+
+
+---
 
 
 # Machine Learning : API
@@ -657,7 +661,7 @@ It's particularly efficient for data processing task in which the problem can be
 Use 3 concepts:
 - Windows : Logically divide elements group by time span
 - Watermarks : Timestamp (Event Time - When data is generated or Processing Time - When data is processed)
-- Trigger : Late arrived data are reagregate with previously submitted results 
+- Trigger : Late arrived data are reagregate with previously submitted results
 
 ## Usage
 For streaming data, you have to applying a sliding window (for group, average, ... for instance)
@@ -695,7 +699,7 @@ p.apply(TestIO.Read.from("gs://..."))
  .apply(new CountWords())
  .ParDo.of(...
  .apply(TestIO.Write.to("gs://..."));
- 
+
 p.run();
 ```
 
@@ -725,7 +729,7 @@ python -m my_script_without_extension \
 ## IAM
 Project-level only (all pipelines or none)
 
-- Dataflow Admin : Full pipeline access + machine type/storage bucket access 
+- Dataflow Admin : Full pipeline access + machine type/storage bucket access
 - Dataflow Developper : Full pipeline access
 - Dataflow Viewer : View only
 - Dataflow worker : Specifically for service accounts
@@ -761,7 +765,7 @@ Everything that goes to the ML Model has to be numeric
 
 ## ML Terms
 - Weights : Parameters we try to optimize
-- Batch size : Part of the dataset we use to calculate the result of a new weight 
+- Batch size : Part of the dataset we use to calculate the result of a new weight
 - Epoch : One pass through the entire Dataset. For example if the Dataset is 100k and the batch is 1k, the epoch consists of 100 batches or steps
 - Gradient descent : The process of increasing or decreasing the weight to reduce the errors
 - Evaluation : Step where we define if the model is good enough
@@ -814,7 +818,7 @@ Precision = Accurracy when classifier say "yes"
 Precision = Positive predictive value. For example on 5 images (TP + FP = 5), there are only 2 TP.
 Precision = TP / (TP + FP) = 2/5 = 40%
 
-### Recall 
+### Recall
 
 Recall : Accuracy when the truth is yes
 
@@ -874,7 +878,7 @@ Result
 Estimator APi : High level "out of the box" API does distributed training
 
 Set up machine learning model : Regression or classification problem; labels; features; ...
-Step to define an estimator APi model : 
+Step to define an estimator APi model :
 
 1/ Set up features columns
 ```python
@@ -986,7 +990,3 @@ Steps :
    - Use gcloud command to summit the job locally or to the cloud
 - Configure and start Cloud ML jobs
    - Use feature crossing (group features together)
-
-
-
-
