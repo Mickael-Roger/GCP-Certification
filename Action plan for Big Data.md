@@ -33,7 +33,7 @@ Docker image
 
 ## Command
 
-On cloud shell : datalab create dataengvm --zone <ZONE>
+On cloud shell : `datalab create dataengvm --zone <ZONE>`
 
 
 ## Scenario
@@ -50,7 +50,8 @@ On cloud shell : datalab create dataengvm --zone <ZONE>
 ![Hadoop_ecosystem](https://www.safaribooksonline.com/library/view/hadoop-essentials/9781784396688/graphics/3765_02_06.jpg)
 
 ### Hadoop
-Consists of Haddop common, HDFS, MapReduce and Yarn
+Consists of Hadoop common, HDFS, MapReduce and Yarn
+
 ### HDFS
 #### Architecture
 
@@ -112,8 +113,8 @@ Hive engine compiles HiveQL into MapReduce jobs.
 Provides script capabilities as an alternative to MapReduce java jobs. 
 
 Pig is composed of 2 components:
-- Pig Latin : Language to write scripts
-- Runtime environnement : Convert script to MapReduce programs
+- **Pig Latin** : Language to write scripts
+- **Runtime environnement** : Convert script to MapReduce programs
 
 
 While Hive is for querying data, pig is for preparing data to make it suitable for querying
@@ -121,7 +122,7 @@ While Hive is for querying data, pig is for preparing data to make it suitable f
 
 ### Spark
 #### Architecture
-Spark stack 
+
 ![Spark_stack](http://www.mickael-roger.com/tmp/sparkarchitecture.png)
 
 Use a master (driver) / slave (worker) architecture
@@ -181,16 +182,16 @@ newLines = lines.transform(...)
 ```
 
 ###### Operations
-- Transformation : Create a new RDD from an existing one. Relationship between transformations are recorded in a linear graph which is a DAG
+- **Transformation** : Create a new RDD from an existing one. Relationship between transformations are recorded in a linear graph which is a DAG
 ```python
 inputRDD = sc.textFile("input.txt")
 errorRDD = inputRDD.filter(lambda x : "error" in x)
 warningRDD = inputRDD.filter(lambda x : "warning" in x)
 badlinesRDD = errorRDD.union(warningRDD)
 ```
-! At this point, none of the transformation have been executed. Only a DAG (Direct Acyclic Graph) is created. RDD transformation will be executed later when action is called
+**! At this point, none of the transformation have been executed. Only a DAG (Direct Acyclic Graph) is created. RDD transformation will be executed later when action is called**
 
-- Operation : Execute operations on RDD. When action is called, entire RDD is performed from scratch. Best practive is to persist intermediate results.
+- **Operation** : Execute operations on RDD. When action is called, entire RDD is performed from scratch. Best practive is to persist intermediate results.
 ```python
 print "Bas lines : " + badlinesRDD.count()
 badlinesRDD.take(10)
@@ -216,7 +217,7 @@ badlinesRDD.take(10)
 - At the end of the application, executors are terminated and cluster manager release the ressources
 
 ## Command
-Dataproc custom machine : --master-machine type OR --worker-machine-type custom-6-30720 -> 6vCPU, 30Go RAM
+Dataproc custom machine : `--master-machine type OR --worker-machine-type custom-6-30720` -> 6vCPU, 30Go RAM
 
 ## IAM
 - Project level only (primitive and predefined roles)
@@ -224,6 +225,7 @@ Dataproc custom machine : --master-machine type OR --worker-machine-type custom-
    - Editor : Full access. Create/Delete/Edit Clusters/Jobs/Workflows
    - Viewer : Viaw access
    - Worker : Assigned to service account (R/W GCS, Write to cloud Logging)
+
 
 ## Migrating HADOOP on premise to Google Cloud
 
@@ -267,7 +269,7 @@ Access through the Web Console : Port 8088 for Hadoop and 9870 for HDFS
 
 # BigQuery
 ## Architecture
-- A project (tenant) is ocmposed of one or more Dataset.
+- A project (tenant) is composed of one or more Dataset.
 - A dataset (ACL for reader/writer/owner at this level) contains one or more table
 - A table is a collection of columns
 
@@ -391,7 +393,7 @@ Optimization through
 
 
 ## Commands
-- bq load --source_format=NEWLINE_DELIMITED_JSON air_dataset.new_tbl gs://xxx/yy*.json schema.json
+- `bq load --source_format=NEWLINE_DELIMITED_JSON air_dataset.new_tbl gs://xxx/yy*.json schema.json`
 
 
 ---
@@ -646,10 +648,10 @@ Then, the pipeline is executed by a distributed processing backends (Apex, Spark
 It's particularly efficient for data processing task in which the problem can be split into many smaller bundle of data that can be processed independently and in parallel. Beam can be used as an ETL (Extract Transform and Load) and pure data integration.
 
 ## Key concept
-- Element - Single entry of data
-- PCollection - Distributed dataset. Input and output data
-- PTransform - Data processing operation
-- ParDo - Type of transform applied to individual element
+- **Element** - Single entry of data
+- **PCollection** - Distributed dataset. Input and output data
+- **PTransform** - Data processing operation
+- **ParDo** - Type of transform applied to individual element
 
 ### Dealing with late/out of order data
 Use 3 concepts:
