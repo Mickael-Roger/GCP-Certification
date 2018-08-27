@@ -706,6 +706,10 @@ It's particularly efficient for data processing task in which the problem can be
 Use 3 concepts:
 - Window : Logically divide elements group by time span
    - Based on timestamp (for streaming : time that message was published on the topic or parsed from message)
+   - A window can be
+      - Fixed : Ex. 9:00 to 9:10
+      - Sliding : Last 10 minutes
+      - Session : Based on event. Ex. : Mesuring rainfall. Start when rain starts and finish when rain stop
 - Watermarks : Timestamp (Event Time - When data is generated or Processing Time - When data is processed)
 - Trigger : Late arrived data are reagregate with previously submitted results
 
