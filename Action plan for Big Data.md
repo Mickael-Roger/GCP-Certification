@@ -628,6 +628,10 @@ Message can be publish as batch. Many message can be sent grouped -> Good idea i
 - Get message : `gcloud pubsub subscriptions pull --auto-ack SUBSCRIPTION_NAME`
 
 
+## IAM
+- Control access at project, topic or subscription level
+- Admin / Editor / Publisher / Subscriber
+
 ---
 
 
@@ -679,6 +683,8 @@ Or REST API : curl -v -s -H "Content-Type: application/json" https://vision.goog
 
 
 # DataFlow
+It's a fully managed, auto-scaling execution environnment for Beam pipelines
+
 ## Architecture
 Based on Apache Beam. It's a unified model for defining both stream and batch data-parallel processing pipelines.
 
@@ -698,7 +704,8 @@ It's particularly efficient for data processing task in which the problem can be
 
 ### Dealing with late/out of order data
 Use 3 concepts:
-- Windows : Logically divide elements group by time span
+- Window : Logically divide elements group by time span
+   - Based on timestamp (for streaming : time that message was published on the topic or parsed from message)
 - Watermarks : Timestamp (Event Time - When data is generated or Processing Time - When data is processed)
 - Trigger : Late arrived data are reagregate with previously submitted results
 
