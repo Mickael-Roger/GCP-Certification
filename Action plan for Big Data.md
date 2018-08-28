@@ -12,7 +12,7 @@
  - Datastore
  - Spanner
  - BigTable
- - Pub/Sub *
+ - Pub/Sub
  - Dataprep *
  - Data Studio *
  - Dataflow
@@ -274,6 +274,16 @@ Access through the Web Console : Port 8088 for Hadoop and 9870 for HDFS
 - A table is a collection of columns
 
 It's a colum storage (Each column is stored i a separate, compressed and encrypted file)
+
+## Streaming analytics
+
+It provides streaming ingest to unbounded datasets
+   - Carry out SQL even when the data continues to be steamed in
+
+-> Best practices is to combined Dataflow and BigQuery
+   - Dataflow for processing that is always done on data
+   - BigQuery for ad hoc queries, dashboards, ...
+      - Use views for common query support
 
 ## Advanced SQL processing
 - Subqueries is supported:
@@ -680,7 +690,13 @@ Or REST API : curl -v -s -H "Content-Type: application/json" https://vision.goog
 
 ---
 
+# Data Studio
 
+Tool to build dashboards and report. Dashboards can be shared with other people that can collaborate on it (Like google doc)
+
+Can use lots of GCP services for data : GCS, BigTable, Big Query, Cloud SQL, ...
+
+---
 
 # DataFlow
 It's a fully managed, auto-scaling execution environnment for Beam pipelines
