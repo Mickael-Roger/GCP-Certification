@@ -14,7 +14,7 @@
  - BigTable
  - Pub/Sub
  - Dataprep *
- - Data Studio *
+ - Data Studio
  - Dataflow
  - Machine Learning
    - Tensor Flow
@@ -695,6 +695,12 @@ Or REST API : curl -v -s -H "Content-Type: application/json" https://vision.goog
 Tool to build dashboards and report. Dashboards can be shared with other people that can collaborate on it (Like google doc)
 
 Can use lots of GCP services for data : GCS, BigTable, Big Query, Cloud SQL, ...
+
+Part of G Suite -> Do not use IAM, ... but use google drive
+
+Use 2 types of cache :
+- Query cache : Cannot be turned off
+- Prefetch cache (Smart cache -> Predict what might be requested) : Can be turn off (If the need to see fresh data from rapidely changing data is important)
 
 ---
 
