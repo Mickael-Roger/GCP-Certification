@@ -13,7 +13,7 @@
  - Spanner
  - BigTable
  - Pub/Sub
- - Dataprep *
+ - Dataprep
  - Data Studio
  - Dataflow
  - Machine Learning
@@ -687,6 +687,23 @@ Or REST API : curl -v -s -H "Content-Type: application/json" https://vision.goog
 - Translate an audio stream
 - Analyze a text
 
+
+---
+
+# Dataprep
+
+A Web tool based on Dataflow to prepare/clean data.
+
+-> Cost : 1.16 times the Dataflow cost
+
+## IAM
+
+- Dataprep user : Run Dataprep in a project
+- Dataprep service agent need
+   - Access to GCS BUCKET
+   - Dataflow developper
+   - Big Query user/data editor
+   - GCE service account
 
 ---
 
