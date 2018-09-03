@@ -559,7 +559,8 @@ Design best practices
 
 Schema efficiency
 
-- Well define row key - Multiple values in a row key
+- Well define row key 
+- Multiple values in a row key
 - Row key (or prefix) should be sufficient for search
 - Goal : Spread load over multiple nodes
 
