@@ -36,12 +36,6 @@ Docker image
 On cloud shell : `datalab create dataengvm --zone <ZONE>`
 
 
-## Scenario
-- Deploy Datalab on cloud shell
-- Deploy Datalab on Dataproc Master node
-- Analyze connexions between Datalab and Master and Worke node in Dataproc (Using python, java, ...)
-
-
 ---
 
 
@@ -57,7 +51,7 @@ Consists of Hadoop common, HDFS, MapReduce and Yarn
 
 Master / Slave architecture.
 
-Namenode acted as a master and manage the filesystem and regulates access by clients. It makes all decisions about the replication and maintain the filesystem Metadata (in the file FsImage sotred locally).
+Namenode acted as a master and manage the filesystem and regulates access by clients. It makes all decisions about the replication and maintain the filesystem Metadata (in the file FsImage stored locally).
 Namenode is a SPOF.
 
 Datanode acted as a slave and manage storage attached to the node. Datanode manage block creation, deletion and replication. They send Heartbeat periodically to the Namenode.
@@ -79,15 +73,16 @@ hadoop fs -cp file /dir/
 #### Architecture
 Composed of a global ressource manager (RM) and a per-application master (AM) - two separate daemons
 
-A container in YARN is a gorup of ressources (CPU, RAM, Disk)
+A container in YARN is a group of ressources (CPU, RAM, Disk)
 
 - Ressource manager : Arbitrate ressources among all applications in the cluster.
 Additionally, on each node runs a NodeManager. It's responsible for containers, monitoring their ressources usage and reporting to the RM.
 - Per-application master : Negociate ressources with the RM and work with the nodemanager to execute and monitore tasks
 
 Ressource manager is composed of 2 components:
+
 - Scheduler : Allocate ressources to various running applications
-- Application manager : Accept job submission, negotiate the first container to Applicaiton Master
+- Application manager : Accept job submission, negotiate the first container to Application Master
 
 ```bash
 yarn application -list
@@ -99,6 +94,7 @@ yarn node -list
 It's a datawarehouse built on top of Hadoop MapReduce framework.
 
 It provides:
+
 - Datawarehouse tasks like ETL, data summarization, query and analysis
 - Can access files stored in HDFS or other mechanism like HBase
 - SQL-like interface called HiveQL
@@ -113,6 +109,7 @@ Hive engine compiles HiveQL into MapReduce jobs.
 Provides script capabilities as an alternative to MapReduce java jobs.
 
 Pig is composed of 2 components:
+
 - **Pig Latin** : Language to write scripts
 - **Runtime environnement** : Convert script to MapReduce programs
 
@@ -141,6 +138,7 @@ Spark cluster manager supports Standalone, Mesos or Yarn.
 Use in-memory storage for RDD as well as disk storage
 
 SparkContext :
+
 - Main entry point
 - Define the main driver program
 - Tell spark how and where to access cluster
@@ -150,7 +148,7 @@ SparkContext :
 
 ##### Spark API librairies
 - Spark SQL : Structured data processing
-- Spark streaming : Process livre stream of data
+- Spark streaming : Process live stream of data
 - Spark MLlib : Common Machine Learning functionality
 - GraphX : Manipulates and performs graphs
 - SparkR : Ligthweight frontend for use spark from R
@@ -168,7 +166,7 @@ There is also a special RDD called : Key Value pair RDD. Can be created by using
 
 ###### Creation
 
-- Distributiong an existing collection.
+- Distributing an existing collection.
 ```python
 lines = sc.parallelize(["Word1", "Word2", "Word3"])
 ```
@@ -193,7 +191,7 @@ badlinesRDD = errorRDD.union(warningRDD)
 
 - **Operation** : Execute operations on RDD. When action is called, entire RDD is performed from scratch. Best practive is to persist intermediate results.
 ```python
-print "Bas lines : " + badlinesRDD.count()
+print "Bad lines : " + badlinesRDD.count()
 badlinesRDD.take(10)
 ```
 
@@ -223,7 +221,7 @@ Dataproc custom machine : `--master-machine type OR --worker-machine-type custom
 - Project level only (primitive and predefined roles)
 - Roles :
    - Editor : Full access. Create/Delete/Edit Clusters/Jobs/Workflows
-   - Viewer : Viaw access
+   - Viewer : View access
    - Worker : Assigned to service account (R/W GCS, Write to cloud Logging)
 
 
@@ -240,6 +238,7 @@ Objectives : Separate Data from Compute and consider clusters as ephemeral
 - HBase -> BigTable
 
 Converting from HDFS to GCS
+
 - Copy data to GCS (Manualy or through a connector)
 - Update file prefix in script (hdfs:// to gs://)
 - Use Dataproc to run against/output to GCS
@@ -252,15 +251,6 @@ Preemptibles VM only function as processing nodes and do not store data for the 
 When creating a cluster, create a specific bucket if not specified
 Access through the Web Console : Port 8088 for Hadoop and 9870 for HDFS
 
-## Scenario
-- Create an hadoop cluster
-- Put a datafile in hdfs
-- Parse it
-- Analyze it with Hive
-- Analyze it with Pig
-- Analyze it with spark, pyspark and sparksql
-- Split and store a file in GCS
-- Process it in parralel
 
 
 ---
@@ -278,6 +268,7 @@ It's a colum storage (Each column is stored i a separate, compressed and encrypt
 ## Streaming analytics
 
 It provides streaming ingest to unbounded datasets
+
    - Carry out SQL even when the data continues to be steamed in
 
 -> Best practices is to combined Dataflow and BigQuery
@@ -368,6 +359,7 @@ LIMIT 10
 
 ## Storage and loading data
 Data used by Bigquery can be stored in:
+
 - BigQuery storage (table) using
   - bq command line
   - WebUI
@@ -377,26 +369,31 @@ Data used by Bigquery can be stored in:
 
 ## Pricing and optimization
 Price is based on :
+
  - Storage
+
      - Amount of data in table
      - Ingest rate of streaming data
      - Automatic discount for old data
  - Processing (1TB/month for free)
  - Free operations
+
      - Loading
      - Exporting
      - Query on metadata
-     - Queriy in error
+     - Query in error
      - Cached query (! per user cache)
 
 Optimization through
-- Dont' process unnecessary columns
+
+- Don't process unnecessary columns
 - Do biggest JOIN first
 - Built-in function are faster than javacript UDF (use APPROX function if possible - example : use APPROX_COUNT_DISTINCT instead of COUNT)
 
 
 ## Partitioning
 2 ways :
+
 - Use wildcard table : FROM table_*
 - Use partitioned table : --time_partitioning_type (--time_partitioning_expiration to delete old data)
 
@@ -413,6 +410,7 @@ Optimization through
 # GCS
 ## Description
 Object storage :
+
 - Multi regional
 - Regional
 - Nearline
@@ -438,7 +436,7 @@ gsutil acl ch -d AllUsers gs://my-awesome-bucket/kitten.png     # Remove these
 
 # Datastore
 ## Description
-NoSQL managed service build upon Bigtablee and Megastore
+NoSQL managed service build upon Bigtable and Megastore
 
 DATASTORE IS A TRANSACTIONNAL DATABASE
 
@@ -472,10 +470,6 @@ Create an entity (For example a company). Declare the entity reference as the pa
 - Primitive and predefined
 - Owner, user, viewer, import/export admin, index admin
 
-## Scenario
-- Create 4 entity group (For 4 differents companies) in a company kind
-- Create tens of users in each entity group
-- Create thousands of users linked to no entity group
 
 
 ---
