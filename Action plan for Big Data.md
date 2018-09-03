@@ -717,6 +717,7 @@ Can use lots of GCP services for data : GCS, BigTable, Big Query, Cloud SQL, ...
 Part of G Suite -> Do not use IAM, ... but use google drive
 
 Use 2 types of cache :
+
 - Query cache : Cannot be turned off
 - Prefetch cache (Smart cache -> Predict what might be requested) : Can be turn off (If the need to see fresh data from rapidely changing data is important)
 
@@ -744,6 +745,7 @@ It's particularly efficient for data processing task in which the problem can be
 
 ### Dealing with late/out of order data
 Use 3 concepts:
+
 - Window : Logically divide elements group by time span
    - Based on timestamp (for streaming : time that message was published on the topic or parsed from message)
    - A window can be
@@ -763,6 +765,7 @@ A pipeline is a direct graph of steps.
 ParDo - Act of Map in Map Reduce and use parallelization. Useful for : Filtering, converting, extracting parts of an input, calculating value from different parts of an input
 
 For python only :
+
 - For 1 to 1 relation between input and output : Map function
 - For non 1 to 1 relation : FlatMap function
 
@@ -836,14 +839,17 @@ Project-level only (all pipelines or none)
 # Machine Learning
 
 2 types:
+
 - Supervised Learning : Use Labels
 - Unsupervised Learning : Data is not labeled
 
 On supervised Learning there are 2 types of models :
+
 - Regression model : When label is a continous number (for exemple predict the weigth of a baby or the tip in a restaurant)
 - Classification model : When label is a class (for example predict the sex of a Baby)
 
 Everything that goes to the ML Model has to be numeric
+
 - Images are converted to tensor (red, green, blue)
 - Text are converted to tensor using a number for each word. Many, plenty and much for example has to have a number relatively close and very far from car. Theses models for text has already been done
 - Numeric values has to have a relation between them : For example customer_id can't be used because customer 2 is not twice more something than customer 1
@@ -854,23 +860,24 @@ Everything that goes to the ML Model has to be numeric
 - n-Dimension array is a Tensor
 
 ## ML Terms
-- Weights : Parameters we try to optimize
-- Batch size : Part of the dataset we use to calculate the result of a new weight
-- Epoch : One pass through the entire Dataset. For example if the Dataset is 100k and the batch is 1k, the epoch consists of 100 batches or steps
-- Gradient descent : The process of increasing or decreasing the weight to reduce the errors
-- Evaluation : Step where we define if the model is good enough
-- Training : Process of optimizing the weight and evaluate the model
+- **Weights** : Parameters we try to optimize
+- **Batch size** : Part of the dataset we use to calculate the result of a new weight
+- **Epoch** : One pass through the entire Dataset. For example if the Dataset is 100k and the batch is 1k, the epoch consists of 100 batches or steps
+- **Gradient descent** : The process of increasing or decreasing the weight to reduce the errors
+- **Evaluation** : Step where we define if the model is good enough
+- **Training** : Process of optimizing the weight and evaluate the model
 
-- Neuron : One unit of combining inputs
-- Hidden layer : Set of neurons that operate on the same set of inputs
-- Inputs : What you feed in a neuron
-- Features : Transformation of a neuron. For instance x^2
+- **Neuron** : One unit of combining inputs
+- **Hidden layer** : Set of neurons that operate on the same set of inputs
+- **Inputs** :What you feed in a neuron
+- **Features** : Transformation of a neuron. For instance x^2
 
 ## Dataset
 
 A good Dataset cover all cases and have negative examples and near-misses
 
 Dataset has to be split in :
+
 - Training data
 - Validation data
 - "Test Data"
@@ -1017,7 +1024,9 @@ dataset = tf.data.TextLineDataset(filnames).map(decode_csv)   #decode_csv is our
 ```
 ##### Distributing
 For distributed training, it's important to shuffle the data
+
 For distributed operation :
+
 - Distribute the graph
 - Share variables
 - Evaluate every once in a while
@@ -1031,6 +1040,7 @@ Use the graphical interface tensorboard to monitor trainning
 #### Features engineering
 ##### Good features
 Good features are :
+
 - Related to the objective
 - Should be known at production time
    - Temporality of the data is very important
@@ -1072,6 +1082,7 @@ Manage scalability for training, hyper parameter tuning and even the deployement
 Cloud ML supports batch and online prediction
 
 Steps :
+
 - Use tensorflow to create computation graph and training application
 - Package your trainer application
    - task.py : To parse command line parameter and send along to train_and_evaluate
