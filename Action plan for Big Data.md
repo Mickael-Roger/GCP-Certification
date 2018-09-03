@@ -614,6 +614,7 @@ Works with topics and subscriptions
 It's possible to have multiple subscribers share the work of processing the messages in a single subscription
 
 Delivery garanty :
+
 - A subscriber ACK each message for every subscription
 - A message is resent if subscriber takes more than "ackDeadline" to respond
 - A subscriber can extend the deadline per message
@@ -621,6 +622,7 @@ Delivery garanty :
 Pub/Sub deliver at least once, Dataflow deduplicate, order and window -> Work well together
 
 It's a global service where a single namespace is shared around the world :
+
 - The message is store to the closest region of the publisher
 
 Offer push and pull to subscribers
