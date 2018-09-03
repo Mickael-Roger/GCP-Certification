@@ -687,13 +687,6 @@ Or REST API : curl -v -s -H "Content-Type: application/json" https://vision.goog
 }
 ```
 
-## Scenario
-- Authorize access to API
-- Analyze a picture
-- Translate a text
-- Translate an audio
-- Translate an audio stream
-- Analyze a text
 
 
 ---
