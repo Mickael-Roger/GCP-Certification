@@ -152,7 +152,12 @@ There is also VPC peering
 
 ### VPC peering
 
-Provide connectivity between two VPC even if they don"t belong to the same organization
+Provide connectivity between two VPC even if they don't belong to the same organization
+
+### VPC Service control
+
+Allow GCP Services access restriction to one/many projects
+
 
 ### Firewall
 By default all ingress traffic is blocked and all egress traffic is allowed.
