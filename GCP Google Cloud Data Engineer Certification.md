@@ -214,3 +214,136 @@ Cannot be reattached to another VM. No snapshot
 ## File store
 
 Fully managed NAS.
+
+
+# Cloud SQL
+
+Support: MySQL, PostgreSQL and SQL Server
+
+Can store up to 30 TB of data
+Can scale up to 96 core and 624 GB of Memory
+
+No maintenance, auto update
+
+Support auto storage increase option
+
+
+Backup on demand or scheduled
+
+Point in time recovery
+
+DMS: Database migration service
+
+Can scale with read replicas only
+
+
+Cloud SQL uses compute engine instances, but these instances are not deployed in a customer VPC. When deploying cloud SQL with private IP, it uses VPC private service connection
+
+
+Connect to Cloud SQL:
+- Using `gcloud sql connect` command (Whitelist IP and connect to the instance)
+- For more persistent access: Client IP must be whitelisted
+
+## Failover
+
+Failover uses a Primary instance in one AZ and a standby instance in another AZ
+
+The second instance is not seen in the cloud SQL interface (Except that High availability option is set to FAILOVER). Failover can be triggered manually
+
+
+
+
+# Cloud Spanner
+
+Distributed, horizontally scalable and multi regional (But can also be regional)
+
+Fully managed
+
+Recommanded when data volume > 2 TB
+
+More expensive than Cloud SQL
+
+
+Data export can only be performed using cloud console or Dataflow job
+
+
+Spanner instances are created using Processing unit values or nodes (1 node is about 1000 processing units)
+
+
+
+# Firestore and Datastore
+
+Serverless NoSQL Database
+
+Document store like MongoDB
+
+Can be accessed using SQL Like ou GQL
+
+Support ACID transaction, multiple indexes and multi region replication
+
+Export data using `gcloud` command line only
+
+
+| Datastore | RDB |
+| --- | --- |
+| Kind | Table |
+| Entity | Row |
+| Property | Column |
+| Key | Primary Key |
+
+
+| Firestore | RDB |
+| --- | --- |
+| Collection Group | Table |
+| Document | Row |
+| Field | Column |
+| Document ID | Primary Key |
+
+
+Firestore supports 2 modes:
+- Native mode (Do not yet support certain AppEngine runtimes)
+- Datastore mode
+
+
+Firestore is the new generation of Datastore 
+
+
+Can only have one Database per GCP project
+
+
+# MemoryStore
+
+Fully managed memory store that support:
+- Redis
+- Memcached
+
+
+Support only private IP address
+
+Support HA deployment with failover replicas
+
+
+# BigTable
+
+Fully managed column oriented NoSQL database
+
+Based on GCE
+
+Can scale horizontally with multiple nodes
+
+
+Can be accessed using the `cbt` command or by using the Hbase API
+
+Integrated with BigQuery and ML products
+
+## Principles
+
+Only row key based indexing (no multi column index) - Only one row key per record
+
+Best practise: Don't use monotonically increasing key
+
+Column are grouped into column family
+
+For example:
+- Want to adresse column salary: prof_data:salary (prof_data is the column family)
+
